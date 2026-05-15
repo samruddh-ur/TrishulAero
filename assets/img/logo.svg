@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="currentColor" aria-hidden="true">
+  <!-- ===== Outer envelope (double-line wings) ===== -->
+  <!-- LEFT wing — outer band tracing from upper point down and out to lower point -->
+  <path d="
+    M 80 30
+    L 92 100
+    L 78 118
+    L 38 192
+    L 18 218
+    L 28 224
+    L 50 210
+    L 70 184
+    L 102 138
+    L 102 122
+    L 86 108
+    L 82 60
+    Z
+  "/>
+  <!-- LEFT wing — inner highlight strip (parallel curve giving the double-outline look) -->
+  <path d="
+    M 88 116
+    L 60 168
+    L 38 200
+    L 44 204
+    L 70 176
+    L 96 134
+    Z
+  " opacity=".0"/>
+
+  <!-- RIGHT wing (mirror) -->
+  <path d="
+    M 120 30
+    L 108 100
+    L 122 118
+    L 162 192
+    L 182 218
+    L 172 224
+    L 150 210
+    L 130 184
+    L 98 138
+    L 98 122
+    L 114 108
+    L 118 60
+    Z
+  "/>
+
+  <!-- ===== Central tall spike (the trident's main prong) ===== -->
+  <path d="
+    M 100 6
+    L 95 110
+    L 100 118
+    L 105 110
+    Z
+  "/>
+
+  <!-- ===== Inner inverted-V chevron with horizontal extensions ===== -->
+  <path d="
+    M 70 138
+    L 100 110
+    L 130 138
+    L 122 142
+    L 100 124
+    L 78 142
+    Z
+  "/>
+
+  <!-- ===== Small upward-pointing arrow at center-bottom ===== -->
+  <path d="
+    M 92 192
+    L 100 174
+    L 108 192
+    L 100 184
+    Z
+  "/>
+</svg>
