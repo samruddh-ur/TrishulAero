@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07080a" />
+<title>Contact — Trishul Aero</title>
+<meta name="description" content="Programme enquiries, partnerships, and capability briefings at our Manipal facility. Every enquiry routes to a real engineer." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/trishul.css" />
+<link rel="icon" type="image/png" href="assets/img/logo.png" /><link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" /><link rel="apple-touch-icon" href="assets/img/logo.png" />
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+
+<nav class="nav">
+  <a class="nav__brand" href="index.html">
+    <img class="trident" src="assets/img/logo.png" alt="Trishul Aero" width="24" height="24" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+    <span>Trishul Aero<small>Advanced Solutions</small></span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="index.html">Platforms</a></li>
+    <li><a href="products.html">Systems</a></li>
+    <li><a href="about.html">Company</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav__cta" href="#form">Send Message <span>→</span></a>
+</nav>
+
+<!-- ==================== PAGE HEADER ==================== -->
+<header class="page-header">
+  <canvas class="canvas-bg" data-density="60"></canvas>
+  <div class="grid-bg"></div>
+  <div class="vignette"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="classification-bar">
+      <span class="live">LIVE</span>
+      <span>Reply window — under one business day · routed to an engineer</span>
+    </div>
+    <div class="eyebrow reveal mt-md"><span class="dot"></span>CONTACT</div>
+    <h1 class="reveal">Build with us.</h1>
+    <p class="lead reveal">For programme enquiries, partnerships, or to schedule a capability briefing at our Manipal facility — we respond within one business day. Every enquiry routes to a real engineer.</p>
+  </div>
+</header>
+
+<!-- ==================== CONTACT CARDS ==================== -->
+<section>
+  <div class="contact-cards reveal-stagger">
+    <div class="contact-card">
+      <div class="label">HEADQUARTERS</div>
+      <div class="val">Manipal</div>
+      <div class="sub">Trishul Advanced Solutions Pvt. Ltd.<br>Karnataka 576104, India</div>
+    </div>
+    <div class="contact-card">
+      <div class="label">R&amp;D CENTRE</div>
+      <div class="val">Bengaluru</div>
+      <div class="sub">Autonomy · perception · mission software</div>
+    </div>
+    <div class="contact-card">
+      <div class="label">PROGRAMME ENQUIRIES</div>
+      <div class="val"><a href="mailto:contact@trishulaero.com">contact@trishulaero.com</a></div>
+      <div class="sub">Press · partnerships · capability briefings</div>
+    </div>
+    <div class="contact-card">
+      <div class="label">PHONE</div>
+      <div class="val">+91 81974 00875</div>
+      <div class="sub">Mon — Sat · 09:30 — 18:30 IST</div>
+    </div>
+    <div class="contact-card">
+      <div class="label">WHATSAPP</div>
+      <div class="val"><a href="https://wa.me/918197400875">Direct line →</a></div>
+      <div class="sub">Fastest channel for time-critical enquiries</div>
+    </div>
+    <div class="contact-card">
+      <div class="label">CAREERS</div>
+      <div class="val"><a href="careers.html">careers@trishulaero.com</a></div>
+      <div class="sub">Engineers, operators, flight-test</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FORM + MAP ==================== -->
+<section class="section" id="form">
+  <div class="container">
+    <div class="sect-head reveal">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>SEND A MESSAGE</div>
+        <h2 class="mt-md">Tell us about your mission.</h2>
+      </div>
+      <p class="subhead lead">Every enquiry routes to a real engineer. We do not have a sales funnel. Typical reply time is under one business day.</p>
+    </div>
+
+    <div class="reveal" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: start;">
+      <!-- form -->
+      <form class="form" data-formspree action="https://formspree.io/f/xqenyrdd" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Trishul Aero — new enquiry from contact form" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none" aria-hidden="true" />
+        <div class="row">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="org">Organisation</label>
+            <input id="org" name="org" type="text" />
+          </div>
+          <div class="field">
+            <label for="type">Enquiry type</label>
+            <select id="type" name="type">
+              <option>Defence programme</option>
+              <option>Commercial / Industrial</option>
+              <option>R&amp;D partnership</option>
+              <option>Press / Media</option>
+              <option>Careers</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="msg">Message</label>
+          <textarea id="msg" name="message" rows="6" placeholder="Brief description of the mission profile, programme, or partnership area." required></textarea>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 12px; gap: 24px; flex-wrap: wrap;">
+          <button type="submit" class="btn btn--primary">Send Message <span class="arrow">→</span></button>
+          <span class="mono text-mute" style="font-size: 11px; letter-spacing: .18em; text-transform: uppercase;">By submitting you agree to our privacy notice.</span>
+        </div>
+        <p class="form-status mono" aria-live="polite" style="font-size: 11px; letter-spacing: .18em; text-transform: uppercase; min-height: 16px; margin-top: 6px;"></p>
+      </form>
+
+      <!-- locator panel -->
+      <div style="border: 1px solid var(--line-strong); background: var(--bg-elev); position: relative; overflow: hidden;">
+        <div class="hud-brackets" style="z-index: 3; pointer-events: none;"><i></i></div>
+        <div style="position: relative; height: 380px; background: #0a0c0f;">
+          <iframe
+            title="Trishul Aero HQ — Manipal, Udupi"
+            src="https://maps.google.com/maps?q=Trishul%20Aero%20Manipal%20Udupi%20Karnataka%20India&t=k&z=15&hl=en&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            style="border:0; width:100%; height:100%; filter: grayscale(.15) contrast(1.05);"
+            allowfullscreen></iframe>
+          <!-- Tactical overlay label -->
+          <div style="position: absolute; top: 14px; left: 14px; right: 14px; z-index: 2; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; letter-spacing: .22em; color: #fff; text-transform: uppercase; pointer-events: none;">
+            <span style="background: rgba(7,8,10,.78); padding: 4px 10px; border: 1px solid var(--accent); color: var(--accent);">● TRISHUL AERO HQ</span>
+            <span style="background: rgba(7,8,10,.78); padding: 4px 10px; border: 1px solid var(--line-strong);">13.3525°N · 74.7866°E</span>
+          </div>
+          <div style="position: absolute; bottom: 14px; left: 14px; z-index: 2; font-family: var(--font-mono); font-size: 10px; letter-spacing: .22em; color: var(--text-soft); text-transform: uppercase; pointer-events: none; background: rgba(7,8,10,.78); padding: 4px 10px; border: 1px solid var(--line-strong);">
+            Manipal // Udupi // Karnataka
+          </div>
+        </div>
+        <div style="padding: 28px;">
+          <div class="eyebrow mb-sm"><span class="dot"></span>VISIT</div>
+          <h4 style="margin-top: 12px; color: #fff;">By appointment only.</h4>
+          <p class="text-soft" style="font-size: 14px; margin-top: 12px;">Capability briefings include a flight demonstration, integration walkthrough, and engineer-to-operator session. Lead time: 7 working days.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px;">
+            <a class="btn btn--ghost" href="mailto:contact@trishulaero.com">Schedule briefing <span class="arrow">→</span></a>
+            <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Manipal,Udupi,Karnataka,India" target="_blank" rel="noreferrer">Directions <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__top">
+    <div class="footer__brand">
+      <img src="assets/img/logo.png" alt="Trishul Aero" width="48" height="48" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+      <h4>Trishul Aero</h4>
+      <p>Designing and manufacturing autonomous aerial systems for India and partner nations.</p>
+    </div>
+    <div class="footer__col"><h5>Systems</h5><ul><li><a href="product-kalki.html">Kalki UCAV</a></li><li><a href="products.html">Garuda</a></li><li><a href="products.html">Dhruv</a></li><li><a href="products.html">Drishti</a></li></ul></div>
+    <div class="footer__col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Press</a></li></ul></div>
+    <div class="footer__col"><h5>Compliance</h5><ul><li><a href="#">DGCA</a></li><li><a href="#">MoD AON</a></li><li><a href="#">Privacy</a></li></ul></div>
+    <div class="footer__col footer__newsletter">
+      <h5>Field Notes</h5>
+      <form data-demo><input type="email" placeholder="you@operator.in" required /><button type="submit">Subscribe →</button></form>
+    </div>
+  </div>
+  <div class="footer__bar"><span>© 2026 Trishul Advanced Solutions Pvt. Ltd.</span><span>HQ Manipal · R&amp;D Bengaluru · IN</span></div>
+</footer>
+
+<script src="assets/js/trishul.js"></script>
+</body>
+</html>
