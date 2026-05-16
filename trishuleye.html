@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07080a" />
+<title>Trishuleye — Choose your view</title>
+<meta name="description" content="Trishuleye — one pane of glass for every airborne asset. Choose between the Fleet Dashboard and Live Operations views." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/trishul.css" />
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2307080a'/><path d='M16 4l0 24 M8 8l8 8 8-8 M10 14l6 6 6-6' stroke='%23ff7a18' stroke-width='2' fill='none'/></svg>" />
+<style>
+  /* Chooser layout */
+  .chooser {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 900px) { .chooser { grid-template-columns: 1fr; } }
+  .choice {
+    background: var(--bg);
+    padding: 56px 48px 56px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: background .35s var(--ease);
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .choice::before {
+    content: '';
+    position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 122, 24, .09), transparent 60%);
+    opacity: 0;
+    transition: opacity .35s var(--ease);
+  }
+  .choice:hover { background: var(--bg-elev); }
+  .choice:hover::before { opacity: 1; }
+  .choice__num {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .26em;
+    color: var(--text-mute); text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .choice__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.2vw, 56px);
+    letter-spacing: -.025em;
+    color: #fff;
+    margin-bottom: 18px;
+    line-height: 1;
+  }
+  .choice__desc {
+    color: var(--text-soft);
+    font-size: 16px;
+    max-width: 46ch;
+    margin-bottom: 32px;
+  }
+  .choice__preview {
+    margin: 8px -48px 28px;
+    height: 220px;
+    background: linear-gradient(180deg, #0a0c0f, #07080a);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .choice__preview svg { width: 100%; height: 100%; }
+  .choice__caps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    margin-bottom: 32px;
+  }
+  .choice__caps .v {
+    font-family: var(--font-display);
+    font-size: 22px; color: #fff;
+  }
+  .choice__caps .k {
+    font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: .22em;
+    color: var(--text-mute); text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .choice__cta {
+    margin-top: auto;
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: .22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    transition: gap .25s var(--ease);
+  }
+  .choice:hover .choice__cta { gap: 18px; }
+  .choice__cta .arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+  .choice:hover .choice__cta .arrow {
+    background: var(--accent); color: #000;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav">
+  <a class="nav__brand" href="index.html">
+    <img class="trident" src="assets/img/logo.png" alt="Trishul Aero" width="24" height="24" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+    <span>Trishul Aero<small>Advanced Solutions</small></span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="index.html">Platforms</a></li>
+    <li><a href="products.html">Systems</a></li>
+    <li><a href="about.html">Company</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav__cta" href="contact.html">Request Briefing <span>→</span></a>
+</nav>
+
+<!-- ==================== HEADER ==================== -->
+<header class="page-header">
+  <canvas class="canvas-bg" data-density="70"></canvas>
+  <div class="grid-bg"></div>
+  <div class="vignette"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="classification-bar">
+      <span class="live">LIVE</span>
+      <span>Trishuleye · One pane of glass · Choose your view</span>
+    </div>
+    <div class="eyebrow reveal mt-md"><span class="dot"></span>EXPERIENCE — TRISHULEYE</div>
+    <h1 class="reveal">Two views. One panel.</h1>
+    <p class="lead reveal">Trishuleye fuses live telemetry, threat tracks, and full-motion video from every Trishul Aero platform on the network. Pick the view that fits the moment — fleet overview or live operator video.</p>
+  </div>
+</header>
+
+<!-- ==================== CHOOSER ==================== -->
+<section class="chooser reveal-stagger">
+  <!-- FLEET DASHBOARD -->
+  <a class="choice" href="trishuleye/dashboard.html">
+    <div class="choice__num">VIEW 01 // FLEET</div>
+    <h2 class="choice__title">Fleet Dashboard</h2>
+    <p class="choice__desc">Live airspace, fleet strength, flight-hour totals, open incidents, and the compliance score across every platform on the network.</p>
+    <div class="choice__preview">
+      <svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="d1" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#0d0f12"/>
+            <stop offset="1" stop-color="#07080a"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="220" fill="url(#d1)"/>
+        <g stroke="#2a2e35" stroke-width=".5" stroke-dasharray="1 4">
+          <line x1="0" y1="50"  x2="600" y2="50"/>
+          <line x1="0" y1="110" x2="600" y2="110"/>
+          <line x1="0" y1="170" x2="600" y2="170"/>
+          <line x1="150" y1="0" x2="150" y2="220"/>
+          <line x1="300" y1="0" x2="300" y2="220"/>
+          <line x1="450" y1="0" x2="450" y2="220"/>
+        </g>
+        <!-- stat tiles -->
+        <g>
+          <rect x="20"  y="20" width="120" height="56" fill="none" stroke="#2a2e35"/>
+          <text x="32" y="40" font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">FLEET</text>
+          <text x="32" y="62" font-family="Space Grotesk" font-size="22" fill="#fff">24</text>
+          <rect x="160" y="20" width="120" height="56" fill="none" stroke="#2a2e35"/>
+          <text x="172" y="40" font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">UPTIME</text>
+          <text x="172" y="62" font-family="Space Grotesk" font-size="22" fill="#fff">99.4<tspan font-size="14" fill="#9aa0a8">%</tspan></text>
+          <rect x="300" y="20" width="120" height="56" fill="none" stroke="#2a2e35"/>
+          <text x="312" y="40" font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">INCIDENTS</text>
+          <text x="312" y="62" font-family="Space Grotesk" font-size="22" fill="#ff7a18">00</text>
+          <rect x="440" y="20" width="140" height="56" fill="none" stroke="#2a2e35"/>
+          <text x="452" y="40" font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">COMPLIANCE</text>
+          <text x="452" y="62" font-family="Space Grotesk" font-size="22" fill="#fff">100<tspan font-size="14" fill="#9aa0a8">%</tspan></text>
+        </g>
+        <!-- chart -->
+        <path d="M20 180 L80 160 L130 165 L190 140 L260 150 L320 130 L380 135 L450 110 L520 115 L580 95" fill="none" stroke="#ff7a18" stroke-width="1.5"/>
+        <g fill="#ff7a18">
+          <circle cx="80"  cy="160" r="2.5"/><circle cx="190" cy="140" r="2.5"/>
+          <circle cx="320" cy="130" r="2.5"/><circle cx="450" cy="110" r="2.5"/>
+          <circle cx="580" cy="95"  r="2.5"/>
+        </g>
+        <text x="20" y="208" font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">7-DAY · FLIGHT HOURS — TREND ↑</text>
+      </svg>
+    </div>
+    <div class="choice__caps">
+      <div><div class="v">24</div><div class="k">Platforms</div></div>
+      <div><div class="v">7m 11s</div><div class="k">Flight time</div></div>
+      <div><div class="v">100%</div><div class="k">Compliance</div></div>
+    </div>
+    <div class="choice__cta">
+      Open Fleet Dashboard
+      <span class="arrow">→</span>
+    </div>
+  </a>
+
+  <!-- LIVE OPERATIONS -->
+  <a class="choice" href="trishuleye/livestream.html">
+    <div class="choice__num">VIEW 02 // LIVE OPS</div>
+    <h2 class="choice__title">Live Operations</h2>
+    <p class="choice__desc">Real-time mission video, AI-driven detections, telemetry overlay, and operator-in-the-loop ROE controls from every active sortie.</p>
+    <div class="choice__preview">
+      <svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet">
+        <rect width="600" height="220" fill="#07080a"/>
+        <!-- Main feed -->
+        <rect x="20"  y="20" width="280" height="180" fill="#0a0c0f" stroke="#2a2e35"/>
+        <g stroke="#3a3f47" stroke-width=".5">
+          <line x1="20"  y1="110" x2="300" y2="110"/>
+          <line x1="160" y1="20"  x2="160" y2="200"/>
+        </g>
+        <!-- target box -->
+        <g transform="translate(160 110)">
+          <rect x="-32" y="-22" width="64" height="44" fill="none" stroke="#ff7a18" stroke-width="1"/>
+          <line x1="-32" y1="0" x2="-26" y2="0" stroke="#ff7a18"/>
+          <line x1="32" y1="0" x2="26" y2="0" stroke="#ff7a18"/>
+          <line x1="0" y1="-22" x2="0" y2="-16" stroke="#ff7a18"/>
+          <line x1="0" y1="22" x2="0" y2="16" stroke="#ff7a18"/>
+        </g>
+        <g font-family="JetBrains Mono" font-size="9" fill="#ff7a18" letter-spacing="2">
+          <text x="34" y="40">● LIVE · UAV-T17 KALKI</text>
+          <text x="34" y="186">TGT-04 · CONF 94%</text>
+        </g>
+        <!-- thumbnails column -->
+        <g>
+          <rect x="320" y="20" width="120" height="56" fill="#0a0c0f" stroke="#2a2e35"/>
+          <text x="332" y="40" font-family="JetBrains Mono" font-size="8" fill="#9aa0a8" letter-spacing="2">FEED 2 · ISR</text>
+          <circle cx="332" cy="56" r="2" fill="#ff7a18"/>
+          <text x="342" y="60" font-family="JetBrains Mono" font-size="8" fill="#5e646d" letter-spacing="2">LIVE</text>
+
+          <rect x="320" y="84" width="120" height="56" fill="#0a0c0f" stroke="#2a2e35"/>
+          <text x="332" y="104" font-family="JetBrains Mono" font-size="8" fill="#9aa0a8" letter-spacing="2">FEED 3 · OVRWATCH</text>
+          <circle cx="332" cy="120" r="2" fill="#ff7a18"/>
+          <text x="342" y="124" font-family="JetBrains Mono" font-size="8" fill="#5e646d" letter-spacing="2">LIVE</text>
+
+          <rect x="320" y="148" width="120" height="52" fill="#0a0c0f" stroke="#2a2e35"/>
+          <text x="332" y="168" font-family="JetBrains Mono" font-size="8" fill="#9aa0a8" letter-spacing="2">FEED 4 · RECON</text>
+          <circle cx="332" cy="184" r="2" fill="#34c759"/>
+          <text x="342" y="188" font-family="JetBrains Mono" font-size="8" fill="#5e646d" letter-spacing="2">STBY</text>
+        </g>
+        <!-- detections panel -->
+        <g>
+          <rect x="460" y="20" width="120" height="180" fill="#0a0c0f" stroke="#2a2e35"/>
+          <text x="472" y="38" font-family="JetBrains Mono" font-size="9" fill="#ff7a18" letter-spacing="2">DETECTIONS</text>
+          <g font-family="JetBrains Mono" font-size="8" fill="#9aa0a8" letter-spacing="1">
+            <text x="472" y="60">+ VEH 94%</text>
+            <text x="472" y="78">+ VEH 88%</text>
+            <text x="472" y="96">+ HUM 76%</text>
+            <text x="472" y="114">+ VEH 91%</text>
+            <text x="472" y="132">+ HUM 82%</text>
+            <text x="472" y="150">+ UAV 65%</text>
+          </g>
+          <line x1="472" y1="172" x2="568" y2="172" stroke="#2a2e35"/>
+          <text x="472" y="190" font-family="JetBrains Mono" font-size="8" fill="#5e646d" letter-spacing="2">TOTAL · 06</text>
+        </g>
+      </svg>
+    </div>
+    <div class="choice__caps">
+      <div><div class="v">16+</div><div class="k">Streams</div></div>
+      <div><div class="v">AES-256</div><div class="k">Encryption</div></div>
+      <div><div class="v">27 ms</div><div class="k">Detect loop</div></div>
+    </div>
+    <div class="choice__cta">
+      Open Live Operations
+      <span class="arrow">→</span>
+    </div>
+  </a>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="section section-tight">
+  <div class="container">
+    <div class="reveal" style="border: 1px solid var(--line-strong); padding: clamp(40px, 6vw, 80px); position: relative; overflow: hidden; background: linear-gradient(135deg, var(--bg-elev) 0%, var(--bg) 100%);">
+      <div class="grid-bg"></div>
+      <div class="hud-brackets"><i></i></div>
+      <div style="position: relative; display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: center;">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>DEPLOY TRISHULEYE</div>
+          <h2 class="mt-md" style="font-size: clamp(32px, 4.4vw, 56px);">Bring the panel to your operations centre.</h2>
+          <p class="subhead mt-md">Trishuleye deploys on-premises or in private cloud. Operator-in-the-loop ROE, AES-256 datalinks, full mission replay. Briefings include a flight demo and a panel walkthrough with an engineer.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+          <a class="btn btn--primary" href="contact.html">Request Demo <span class="arrow">→</span></a>
+          <a class="btn" href="products.html">Back to systems <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container footer__top">
+    <div class="footer__brand">
+      <img src="assets/img/logo.png" alt="Trishul Aero" width="48" height="48" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+      <h4>Trishul Aero</h4>
+      <p>Designing and manufacturing autonomous aerial systems for India and partner nations.</p>
+    </div>
+    <div class="footer__col"><h5>Systems</h5><ul><li><a href="product-kalki.html">Kalki UCAV</a></li><li><a href="products.html">Garuda</a></li><li><a href="products.html">Dhruv</a></li><li><a href="products.html">Drishti</a></li><li><a href="trishuleye.html">Trishuleye</a></li></ul></div>
+    <div class="footer__col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Press</a></li></ul></div>
+    <div class="footer__col"><h5>Compliance</h5><ul><li><a href="#">DGCA</a></li><li><a href="#">MoD AON</a></li><li><a href="#">Privacy</a></li></ul></div>
+    <div class="footer__col footer__newsletter">
+      <h5>Field Notes</h5>
+      <form data-demo><input type="email" placeholder="you@operator.in" required /><button type="submit">Subscribe →</button></form>
+    </div>
+  </div>
+  <div class="footer__bar"><span>© 2026 Trishul Advanced Solutions Pvt. Ltd.</span><span>HQ Manipal · R&amp;D Bengaluru · IN</span></div>
+</footer>
+
+<script src="assets/js/trishul.js"></script>
+</body>
+</html>
