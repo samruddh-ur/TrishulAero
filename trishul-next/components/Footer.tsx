@@ -16,11 +16,8 @@ export default function Footer() {
         <div className="footer__col">
           <h5>Systems</h5>
           <ul>
-            <li><Link href="/products/kalki">Kalki UCAV</Link></li>
-            <li><Link href="/products">Garuda Swarm</Link></li>
-            <li><Link href="/products">Dhruv C-UAS</Link></li>
-            <li><Link href="/products">Drishti ISR Pod</Link></li>
-            <li><Link href="/trishuleye">Trishuleye Panel</Link></li>
+            <li><Link href="/products/kalki">Kalki Interceptor</Link></li>
+            <li><Link href="/trishuleye">TrishulC2</Link></li>
           </ul>
         </div>
         <div className="footer__col">

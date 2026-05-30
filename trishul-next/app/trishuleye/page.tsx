@@ -10,14 +10,14 @@ export default function TrishuleyePage() {
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="classification-bar">
             <span className="live">LIVE</span>
-            <span>Trishuleye · One pane of glass · Choose your view</span>
+            <span>TrishulC2 · One pane of glass · Choose your view</span>
           </div>
           <div className="eyebrow reveal mt-md">
-            <span className="dot" />EXPERIENCE — TRISHULEYE
+            <span className="dot" />EXPERIENCE — TRISHULC2
           </div>
-          <h1 className="reveal">Two views. One panel.</h1>
+          <h1 className="reveal">Two views. One console.</h1>
           <p className="lead reveal">
-            Trishuleye fuses live telemetry, threat tracks, and full-motion video from every Trishul Aero
+            TrishulC2 fuses live telemetry, threat tracks, and full-motion video from every Trishul Aero
             platform on the network. Pick the view that fits the moment — fleet overview or live operator video.
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function TrishuleyePage() {
                 <rect x="-32" y="-22" width="64" height="44" fill="none" stroke="#ff7a18" strokeWidth="1" />
               </g>
               <g fontFamily="JetBrains Mono" fontSize="9" fill="#ff7a18" letterSpacing="2">
-                <text x="34" y="40">● LIVE · UAV-T17 KALKI</text>
+                <text x="34" y="40">● LIVE · INT-K1 KALKI</text>
                 <text x="34" y="186">TGT-04 · CONF 94%</text>
               </g>
               <g>
@@ -132,12 +132,12 @@ export default function TrishuleyePage() {
             <div className="hud-brackets"><i /></div>
             <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 40, alignItems: 'center' }}>
               <div>
-                <div className="eyebrow"><span className="dot" />DEPLOY TRISHULEYE</div>
+                <div className="eyebrow"><span className="dot" />DEPLOY TRISHULC2</div>
                 <h2 className="mt-md" style={{ fontSize: 'clamp(32px, 4.4vw, 56px)' }}>
-                  Bring the panel to your operations centre.
+                  Bring the console to your operations centre.
                 </h2>
                 <p className="subhead mt-md">
-                  Trishuleye deploys on-premises or in private cloud. Operator-in-the-loop ROE, AES-256
+                  TrishulC2 deploys on-premises or in private cloud. Operator-in-the-loop ROE, AES-256
                   datalinks, full mission replay.
                 </p>
               </div>

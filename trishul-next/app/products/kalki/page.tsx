@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Kalki UCAV',
-  description: 'Kalki UCAV — next-generation FPV combat system with on-board AI for ISR and precision strike in contested, GNSS-denied environments.'
+  title: 'Kalki Interceptor',
+  description: 'Kalki Interceptor — high-speed autonomous interceptor for hard-kill engagement of hostile UAS. Vision-guided terminal homing in GNSS-denied environments.'
 };
 
 export default function KalkiPage() {
@@ -61,11 +61,11 @@ export default function KalkiPage() {
   <div className="container" style={{position: 'relative', zIndex: 2}}>
     <div className="classification-bar reveal">
       <span className="live">LIVE</span>
-      <span>UAV-T17 // KALKI · R3 BUILD · Tri-service evaluation</span>
+      <span>INT-K1 // KALKI · INTERCEPTOR BUILD · Tri-service evaluation</span>
     </div>
-    <div className="eyebrow reveal mt-md"><span className="dot"></span>SYSTEM 01 // FPV COMBAT — ISR + PRECISION STRIKE</div>
-    <h1 className="reveal" style={{marginTop: '18px'}}>Kalki UCAV.</h1>
-    <p className="lead reveal">Next-generation FPV combat system for ISR and precision strike in contested, GNSS-denied environments. On-board AI. Operator-in-the-loop. Sovereign.</p>
+    <div className="eyebrow reveal mt-md"><span className="dot"></span>SYSTEM 01 // AUTONOMOUS INTERCEPTOR — COUNTER-UAS HARD-KILL</div>
+    <h1 className="reveal" style={{marginTop: '18px'}}>Kalki Interceptor.</h1>
+    <p className="lead reveal">High-speed autonomous interceptor for hard-kill engagement of hostile UAS. Vision-guided terminal homing, on-board target classification, zero dependency on GNSS or external command links. Sovereign.</p>
     <div className="hero__ctas reveal" style={{marginTop: '36px'}}>
       <Link className="btn btn--primary" href="/contact">Request Demo <span className="arrow">→</span></Link>
       <a className="btn" href="#specs">View Specifications <span className="arrow">→</span></a>
@@ -252,7 +252,7 @@ export default function KalkiPage() {
       <div className="tech__cell">
         <div className="num">USE 04</div>
         <h4>Forward Recon</h4>
-        <p>Rapid-deploy reconnaissance ahead of dismounted forces, with full mission state replay through Trishuleye.</p>
+        <p>Rapid-deploy interception ahead of dismounted forces, with full mission state replay through TrishulC2.</p>
       </div>
     </div>
   </div>

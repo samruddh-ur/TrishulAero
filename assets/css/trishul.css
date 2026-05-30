@@ -463,7 +463,7 @@ section { position: relative; }
 .system:hover { background: var(--bg-elev); }
 .system:hover::before { opacity: 1; }
 .system__visual {
-  height: 200px;
+  height: 260px;
   margin: -36px -32px 24px;
   position: relative;
   overflow: hidden;
@@ -984,4 +984,132 @@ section { position: relative; }
   .hero__sub { font-size: 16px; }
   .btn { padding: 14px 22px; font-size: 11px; }
   .nav { padding: 14px 20px; }
+}
+
+/* ---------- 29. TRISHULEYE EXPERIENCE PAGE -------------- */
+/* (same block — see trishul-next/app/globals.css) */
+
+/* ---------- 28. MOBILE TWEAKS ---------------------------- */
+@media (max-width: 600px) {
+  .hero { padding: 100px 20px 60px; min-height: 92vh; }
+  .hero__sub { font-size: 16px; }
+  .btn { padding: 14px 22px; font-size: 11px; }
+  .nav { padding: 14px 20px; }
+}
+
+/* ---------- 29. TRISHULEYE EXPERIENCE PAGE -------------- */
+.eye-intro {
+  padding: clamp(140px, 18vh, 200px) var(--gutter) 60px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.eye-intro .grid-bg { z-index: 0; }
+.eye-intro__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+  align-items: end;
+}
+@media (max-width: 900px) { .eye-intro__inner { grid-template-columns: 1fr; gap: 30px; } }
+.eye-intro h1 {
+  font-size: clamp(48px, 7vw, 96px);
+  margin-top: 18px;
+  letter-spacing: -.03em;
+}
+.eye-intro h1 em { color: var(--accent); font-style: normal; }
+.eye-intro p.lead {
+  margin-top: 24px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  color: var(--text-soft);
+  max-width: 58ch;
+}
+.eye-tabs {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(7, 8, 10, .82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.eye-tabs__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 16px var(--gutter);
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+.eye-tab {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+}
+.eye-tab:hover { color: #fff; border-color: var(--text-soft); }
+.eye-tab.is-active { background: var(--accent); border-color: var(--accent); color: #000; }
+.eye-tab .ico { width: 14px; height: 14px; border: 1px solid currentColor; display: inline-block; }
+.eye-tab.is-active .ico { background: #000; }
+.eye-tab__hint {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-mute);
+}
+.eye-tab__hint .live-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); margin-right: 8px; vertical-align: middle;
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  animation: pulse 1.6s infinite;
+}
+.eye-frame-wrap { position: relative; background: #0a0c0f; border-bottom: 1px solid var(--line); }
+.eye-frame {
+  width: 100%;
+  height: calc(100vh - 64px);
+  min-height: 720px;
+  border: 0; display: block;
+  background: #eef2f7;
+}
+.eye-fullscreen {
+  position: absolute; top: 16px; right: 16px; z-index: 5;
+
+/* ---------- 30. TRISHULEYE CHOOSER ---------------------- */
+/* (full styles also live inline in trishuleye.html — kept here for parity with Next.js project) */
+
+/* ---------- 31. SYSTEM CARD PHOTO OVERLAY --------------- */
+/* The .system__visual already contains an SVG schematic that acts as a
+   placeholder. Drop a real photo at the expected path (assets/img/systems/<slug>.jpg)
+   and the <img class="cover"> overlay below will paint on top of the SVG.
+   If the file is missing, onerror hides the img and the SVG shows through. */
+.system__visual > img.cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 1;
+  /* Subtle treatment so photos blend with the cinematic UI */
+  filter: brightness(.92) contrast(1.06) saturate(.98);
+}
+.system__visual::after {
+  /* readability gradient so badges/meta labels stay crisp on top of photos */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(7,8,10,.72) 0%, rgba(7,8,10,.10) 22%, transparent 40%),
+    linear-gradient(0deg,   rgba(7,8,10,.55) 0%, transparent 30%);
+  pointer-events: none;
+}
+.system__visual .badge,
+.system__visual .meta {
+  z-index: 3;
 }

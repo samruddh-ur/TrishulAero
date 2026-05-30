@@ -72,7 +72,7 @@ export default function HomePage() {
           <line x1="0" y1="14" x2="100" y2="80" stroke="#3a3f47"/>
           <text x="106" y="84">EO/IR GIMBAL</text>
           <line x1="-30" y1="0" x2="-160" y2="-30" stroke="#3a3f47"/>
-          <text x="-330" y="-26">UAV-T17 // KALKI</text>
+          <text x="-330" y="-26">INT-K1 // KALKI</text>
         </g>
       </g>
 
@@ -108,7 +108,7 @@ export default function HomePage() {
   <div className="hero__hud">
     <div className="panel is-live">
       <div className="label">FEED // SECTOR-9</div>
-      <div className="value">UAV-T17 KALKI</div>
+      <div className="value">INT-K1 KALKI</div>
     </div>
     <div className="panel">
       <div className="label">MISSION CLOCK</div>
@@ -168,12 +168,13 @@ export default function HomePage() {
     </div>
   </div>
 
-  <div className="systems reveal">
-    {/* Kalki UCAV */}
+  <div className="systems reveal" style={{gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'}}>
+    {/* Kalki Interceptor */}
     <article className="system">
       <div className="system__visual">
-        <span className="badge">UAV-T17 // FPV</span>
-        <span className="meta">CLASS — IIIA</span>
+        <span className="badge">INT-K1 // INTERCEPTOR</span>
+        <span className="meta">HARD-KILL</span>
+        <img className="cover" src="/img/systems/kalki.jpg" alt="Kalki Interceptor" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
         <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
           <defs>
             <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stopColor="#1c2026"/><stop offset="1" stopColor="#0a0c0f"/></linearGradient>
@@ -190,94 +191,62 @@ export default function HomePage() {
             </g>
           </g>
           <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#5e646d" letterSpacing="2">
-            <text x="14" y="184">SCH-KALKI-R3</text>
-            <text x="316" y="184">ε 5.0 km</text>
+            <text x="14" y="184">SCH-KALKI-INT</text>
+            <text x="306" y="184">VIS-HOMING</text>
           </g>
         </svg>
       </div>
-      <div className="system__role">FPV Combat / ISR &amp; Precision Strike</div>
-      <div className="system__name">Kalki UCAV</div>
-      <p className="system__desc">Next-generation FPV combat system with on-board AI for ISR and precision strike in contested, GNSS-denied environments.</p>
+      <div className="system__role">Autonomous Interceptor / Counter-UAS</div>
+      <div className="system__name">Kalki Interceptor</div>
+      <p className="system__desc">High-speed autonomous interceptor for hard-kill engagement of hostile UAS. Vision-guided terminal homing, on-board target classification, and zero dependency on GNSS or external command links.</p>
       <div className="system__specs">
-        <div className="spec"><div className="v">AI</div><div className="k">On-board</div></div>
-        <div className="spec"><div className="v">500g</div><div className="k">Payload</div></div>
-        <div className="spec"><div className="v">5,000m</div><div className="k">Ceiling</div></div>
+        <div className="spec"><div className="v">180km/h</div><div className="k">Top speed</div></div>
+        <div className="spec"><div className="v">AI</div><div className="k">Terminal guidance</div></div>
+        <div className="spec"><div className="v">GNSS-free</div><div className="k">Navigation</div></div>
       </div>
       <Link className="system__link" href="/products/kalki">View System →</Link>
     </article>
 
-    {/* Garuda Swarm */}
+    {/* TrishulC2 */}
     <article className="system">
       <div className="system__visual">
-        <span className="badge">UAV-S24 // SWARM</span>
-        <span className="meta">MESH NETWORK</span>
+        <span className="badge">TRISHULC2 // C2</span>
+        <span className="meta">MISSION CONTROL</span>
+        <img className="cover" src="/img/systems/trishuleye-panel.jpg" alt="TrishulC2" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
         <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
           <rect width="400" height="200" fill="#0a0c0f"/>
-          <g stroke="#2a2e35" strokeDasharray="1 4"><line x1="0" y1="100" x2="400" y2="100"/></g>
-          <g stroke="#ff7a18" strokeWidth=".5" opacity=".5">
-            <line x1="80" y1="60" x2="160" y2="100"/><line x1="160" y1="100" x2="240" y2="60"/>
-            <line x1="240" y1="60" x2="320" y2="100"/><line x1="80" y1="140" x2="160" y2="100"/>
-            <line x1="160" y1="100" x2="240" y2="140"/><line x1="240" y1="140" x2="320" y2="100"/>
-            <line x1="80" y1="60" x2="80" y2="140"/><line x1="320" y1="60" x2="320" y2="140"/>
+          <g stroke="#2a2e35" strokeWidth="1" fill="none">
+            <rect x="40" y="40" width="100" height="120"/>
+            <rect x="160" y="40" width="200" height="60"/>
+            <rect x="160" y="110" width="90" height="50"/>
+            <rect x="270" y="110" width="90" height="50"/>
+          </g>
+          <g stroke="#ff7a18" strokeWidth=".5">
+            <path d="M50 100 L130 80"/><path d="M180 70 Q220 50 260 70 T340 70"/>
           </g>
           <g fill="#ff7a18">
-            <circle cx="80" cy="60" r="3"/><circle cx="160" cy="100" r="3"/><circle cx="240" cy="60" r="3"/>
-            <circle cx="320" cy="100" r="3"/><circle cx="80" cy="140" r="3"/><circle cx="240" cy="140" r="3"/>
-            <circle cx="320" cy="60" r="3"/><circle cx="160" cy="100" r="4"/>
+            <circle cx="50" cy="100" r="2"/><circle cx="80" cy="120" r="2"/><circle cx="110" cy="90" r="2"/><circle cx="130" cy="80" r="2"/>
           </g>
           <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#5e646d" letterSpacing="2">
-            <text x="14" y="184">SCH-GARUDA-S24</text>
-            <text x="296" y="184">ε 10 km</text>
+            <text x="14" y="184">SCH-C2-PANEL</text>
+            <text x="296" y="184">99.4% UPLINK</text>
           </g>
         </svg>
       </div>
-      <div className="system__role">Loitering Munitions / Mesh Swarm</div>
-      <div className="system__name">Garuda Swarm</div>
-      <p className="system__desc">Mesh-networked autonomous loitering munitions with on-board target classification and no-comms recovery behaviour.</p>
+      <div className="system__role">Mission Command &amp; Control</div>
+      <div className="system__name">TrishulC2</div>
+      <p className="system__desc">Multi-domain command and control platform. Live telemetry, threat tracks, and full-motion video from every Trishul Aero asset on the network — one pane of glass for the operator.</p>
       <div className="system__specs">
-        <div className="spec"><div className="v">24×</div><div className="k">Swarm</div></div>
-        <div className="spec"><div className="v">10km</div><div className="k">Range</div></div>
-        <div className="spec"><div className="v">30min</div><div className="k">Loiter</div></div>
+        <div className="spec"><div className="v">16+</div><div className="k">Streams</div></div>
+        <div className="spec"><div className="v">AES</div><div className="k">256</div></div>
+        <div className="spec"><div className="v">99.4%</div><div className="k">Uplink</div></div>
       </div>
-      <Link className="system__link" href="/products">View System →</Link>
-    </article>
-
-    {/* Dhruv C-UAS */}
-    <article className="system">
-      <div className="system__visual">
-        <span className="badge">CUAS-D7 // LAYERED</span>
-        <span className="meta">RF + RADAR</span>
-        <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="200" fill="#0a0c0f"/>
-          <g fill="none" stroke="#ff7a18" strokeWidth="1">
-            <circle cx="200" cy="100" r="30"/>
-            <circle cx="200" cy="100" r="60" opacity=".6"/>
-            <circle cx="200" cy="100" r="90" opacity=".35"/>
-            <circle cx="200" cy="100" r="120" opacity=".2"/>
-          </g>
-          <line x1="200" y1="100" x2="320" y2="40" stroke="#ff7a18" strokeWidth="1"/>
-          <circle cx="320" cy="40" r="4" fill="#ff7a18"/>
-          <g stroke="#2a2e35" strokeDasharray="1 4"><line x1="80" y1="100" x2="320" y2="100"/><line x1="200" y1="20" x2="200" y2="180"/></g>
-          <g fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#5e646d" letterSpacing="2">
-            <text x="14" y="184">SCH-DHRUV-D7</text>
-            <text x="306" y="184">360° SCAN</text>
-          </g>
-        </svg>
-      </div>
-      <div className="system__role">Counter-UAS / Detect &amp; Defeat</div>
-      <div className="system__name">Dhruv C-UAS</div>
-      <p className="system__desc">Layered counter-drone system with RF and radar. Soft-kill jamming and hard-kill interceptor unified in one rack.</p>
-      <div className="system__specs">
-        <div className="spec"><div className="v">15km</div><div className="k">Detect</div></div>
-        <div className="spec"><div className="v">6km</div><div className="k">Defeat</div></div>
-        <div className="spec"><div className="v">360°</div><div className="k">Coverage</div></div>
-      </div>
-      <Link className="system__link" href="/products">View System →</Link>
+      <Link className="system__link" href="/trishuleye">Experience the Console →</Link>
     </article>
   </div>
 
   <div className="container" style={{marginTop: '36px', textAlign: 'center'}}>
-    <Link className="btn btn--ghost" href="/products">View entire fleet — 7 systems <span className="arrow">→</span></Link>
+    <Link className="btn btn--ghost" href="/products">View the fleet — 2 systems <span className="arrow">→</span></Link>
   </div>
 </section>
 
@@ -488,7 +457,7 @@ export default function HomePage() {
         <path d="M4 22 L12 14 L18 20 L28 8"/><circle cx="4" cy="22" r="1.5" fill="currentColor"/><circle cx="28" cy="8" r="1.5" fill="currentColor"/>
       </svg>
       <h4>Mission Intelligence</h4>
-      <p>Trishuleye fuses live telemetry, threat tracks, and full-motion video from every Trishul platform on the network — one pane of glass for the entire airborne picture.</p>
+      <p>TrishulC2 fuses live telemetry, threat tracks, and full-motion video from every Trishul platform on the network — one pane of glass for the entire airborne picture.</p>
     </div>
 
     <div className="tech__cell">
@@ -716,8 +685,8 @@ export default function HomePage() {
         </div>
         <div className="news__body">
           <div className="news__meta">FIELD · 12 MAY 2026</div>
-          <h3 className="news__title">Kalki UCAV completes high-altitude validation at 5,200 m.</h3>
-          <p className="news__excerpt">Two weeks of cold-weather operations in Ladakh validate the new R3 airframe and on-board target-classification model.</p>
+          <h3 className="news__title">Kalki Interceptor completes high-altitude validation at 5,200 m.</h3>
+          <p className="news__excerpt">Two weeks of cold-weather operations in Ladakh validate the new airframe and on-board target-classification model under thin-air conditions.</p>
         </div>
       </a>
 
@@ -736,8 +705,8 @@ export default function HomePage() {
         </div>
         <div className="news__body">
           <div className="news__meta">PROGRAMME · 03 APR 2026</div>
-          <h3 className="news__title">Dhruv C-UAS selected for FOB-grade integration trials.</h3>
-          <p className="news__excerpt">Integration with paramilitary command-and-control begins this quarter; live-fire defeat trials scheduled for monsoon window.</p>
+          <h3 className="news__title">Kalki Interceptor cleared for live-fire counter-UAS trials.</h3>
+          <p className="news__excerpt">Vision-guided terminal homing demonstrated against Class-1 and Class-2 hostile targets at our Manipal range. Open-air defeat trials scheduled for the monsoon window.</p>
         </div>
       </a>
 
@@ -760,8 +729,8 @@ export default function HomePage() {
         </div>
         <div className="news__body">
           <div className="news__meta">R&amp;D · 18 FEB 2026</div>
-          <h3 className="news__title">Garuda Swarm: 24-vehicle mesh recovery under degraded link.</h3>
-          <p className="news__excerpt">Closed-track demonstration of no-comms recovery behaviour, with all 24 vehicles re-establishing formation within 6.2 seconds of link loss.</p>
+          <h3 className="news__title">TrishulC2: 16-stream mission console clears 99.4% uplink benchmark.</h3>
+          <p className="news__excerpt">Closed-range demonstration of multi-asset command and control — 16 simultaneous full-motion video feeds and live threat tracks held at 99.4% uplink under degraded RF conditions.</p>
         </div>
       </a>
     </div>

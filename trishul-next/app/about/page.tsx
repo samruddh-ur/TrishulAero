@@ -47,7 +47,7 @@ export default function AboutPage() {
     <div className="sect-head reveal">
       <div>
         <div className="eyebrow"><span className="dot"></span>02 // Trajectory</div>
-        <h2 className="mt-md">Four years. Seven systems.</h2>
+        <h2 className="mt-md">Four years. Two systems.</h2>
       </div>
       <p className="subhead lead">A research-led organisation that ships hardware. Every milestone below is logged in flight hours, not press releases.</p>
     </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
       </div>
       <div className="timeline__item">
         <div className="timeline__year">2022 / Q4 — FIRST FLIGHT</div>
-        <h3 className="timeline__title">UAV-T17 Mark I prototype achieves first hover.</h3>
+        <h3 className="timeline__title">Kalki Mk I prototype achieves first hover.</h3>
         <p className="timeline__body">In-house airframe, in-house ESCs, third-party autopilot. The autopilot is replaced within six months.</p>
       </div>
       <div className="timeline__item">
@@ -69,29 +69,29 @@ export default function AboutPage() {
         <p className="timeline__body">VIO + INS recovery validated in GNSS-denied conditions over closed-track trials.</p>
       </div>
       <div className="timeline__item">
-        <div className="timeline__year">2023 / Q4 — TRISHULEYE</div>
-        <h3 className="timeline__title">Trishuleye operator interface enters live trials.</h3>
-        <p className="timeline__body">One pane of glass: live telemetry, threat tracks, full-motion video. Five operators on the panel by quarter end.</p>
+        <div className="timeline__year">2023 / Q4 — TRISHULC2</div>
+        <h3 className="timeline__title">TrishulC2 operator interface enters live trials.</h3>
+        <p className="timeline__body">One pane of glass: live telemetry, threat tracks, full-motion video. Five operators on the console by quarter end.</p>
       </div>
       <div className="timeline__item">
         <div className="timeline__year">2024 / Q2 — iDEX COHORT 7</div>
         <h3 className="timeline__title">Defence Innovation Organisation iDEX cohort awardee.</h3>
-        <p className="timeline__body">Garuda Swarm programme funded. Mesh-recovery behaviour development accelerates.</p>
+        <p className="timeline__body">Kalki Interceptor programme funded. Vision-guided terminal homing development accelerates.</p>
       </div>
       <div className="timeline__item">
-        <div className="timeline__year">2025 / Q1 — DHRUV C-UAS</div>
-        <h3 className="timeline__title">Dhruv C-UAS first detect-classify-defeat closure.</h3>
+        <div className="timeline__year">2025 / Q1 — KALKI FIRST CLOSURE</div>
+        <h3 className="timeline__title">Kalki Interceptor first detect-classify-defeat closure.</h3>
         <p className="timeline__body">Live-fire interceptor engagement under operator-in-the-loop ROE on Trishul range.</p>
       </div>
       <div className="timeline__item">
-        <div className="timeline__year">2026 / Q2 — KALKI R3</div>
-        <h3 className="timeline__title">Kalki UCAV R3 high-altitude validation, Ladakh.</h3>
+        <div className="timeline__year">2026 / Q2 — KALKI HIGH-ALT</div>
+        <h3 className="timeline__title">Kalki Interceptor high-altitude validation, Ladakh.</h3>
         <p className="timeline__body">240 sortie cold-soak trial complete. Service ceiling validated to 5,200 m AGL.</p>
       </div>
       <div className="timeline__item" style={{paddingBottom: 0}}>
         <div className="timeline__year">NEXT</div>
-        <h3 className="timeline__title">Garuda Swarm + Dhruv C-UAS integrated trials.</h3>
-        <p className="timeline__body">Friendly-swarm cueing of counter-UAS interceptors under unified ROE. Scheduled monsoon window.</p>
+        <h3 className="timeline__title">Kalki + TrishulC2 integrated tri-service trials.</h3>
+        <p className="timeline__body">Operator-in-the-loop interception of hostile UAS cued directly from the TrishulC2 console. Scheduled monsoon window.</p>
       </div>
     </div>
   </div>

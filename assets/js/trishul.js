@@ -228,4 +228,47 @@
     });
   });
 
+  /* ---------- 11. FORM SUBMIT (FORMSPREE — REAL) -------- */
+  document.querySelectorAll('form[data-formspree]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('.form-status');
+      const orig = btn ? btn.textContent : '';
+      const setStatus = (text, kind) => {
+        if (!status) return;
+        status.textContent = text;
+        status.style.color =
+          kind === 'ok'  ? 'var(--ok)' :
+          kind === 'err' ? 'var(--danger)' :
+                           'var(--text-mute)';
+      };
+      if (btn) { btn.textContent = 'TRANSMITTING…'; btn.disabled = true; }
+      setStatus('Routing your message to an engineer…', 'info');
+      try {
+        const res = await fetch(form.action, {
+          method: form.method || 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          if (btn) btn.textContent = 'MESSAGE RECEIVED ✓';
+          setStatus('Received. You will hear back within one business day.', 'ok');
+          form.reset();
+        } else {
+          const data = await res.json().catch(() => ({}));
+          const msg = (data && data.errors && data.errors.map((er) => er.message).join(', ')) ||
+            'Something went wrong — please email contact@trishulaero.com directly.';
+          if (btn) btn.textContent = 'TRY AGAIN';
+          setStatus(msg, 'err');
+        }
+      } catch (_) {
+        if (btn) btn.textContent = 'TRY AGAIN';
+        setStatus('Network error — please email contact@trishulaero.com directly.', 'err');
+      } finally {
+        if (btn) setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 3000);
+      }
+    });
+  });
+
 })();
