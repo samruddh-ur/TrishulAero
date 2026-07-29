@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07080a" />
+<title>TrishulC2 — Mission Intelligence | Trishul Aero</title>
+<meta name="description" content="TrishulC2 fuses live telemetry, sensor feeds and threat tracks from every Trishul Aero airframe into one trusted operating picture — decisions in under 100 ms. On-premise, encrypted, sovereign." />
+<link rel="canonical" href="https://trishulaero.com/product-trishulc2.html" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Trishul Aero" />
+<meta property="og:title" content="TrishulC2 — Every asset. One operating picture." />
+<meta property="og:description" content="The command layer of the Trishul stack: sensor fusion, on-board classification and swarm tasking in one sovereign console." />
+<meta property="og:url" content="https://trishulaero.com/product-trishulc2.html" />
+<meta property="og:image" content="https://trishulaero.com/assets/img/logo.png" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TrishulC2 — Every asset. One operating picture." />
+<meta name="twitter:description" content="The command layer of the Trishul stack: sensor fusion, on-board classification and swarm tasking in one sovereign console." />
+<meta name="twitter:image" content="https://trishulaero.com/assets/img/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/trishul.css" />
+<link rel="icon" type="image/png" href="assets/img/logo.png" /><link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" /><link rel="apple-touch-icon" href="assets/img/logo.png" />
+
+<style>
+/* ============================================================
+   TrishulC2 console tour — scoped, namespaced c2-*
+   Uses the site's design tokens (accent, mono, lines).
+   ============================================================ */
+.c2halves{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); margin-top:44px;}
+.c2halves > div{padding:28px 30px;}
+.c2halves > div:first-child{border-right:1px solid var(--line);}
+.c2half-k{font-family:var(--font-mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--accent);}
+.c2half-t{font-family:var(--font-display); color:#fff; font-size:20px; margin:10px 0 6px;}
+.c2half-p{color:var(--text-soft); font-size:14.5px; margin:0;}
+
+.c2tour-lead{text-align:center;}
+.c2tour-lead .eyebrow{justify-content:center;}
+.c2scrollhint{font-family:var(--font-mono); font-size:11px; letter-spacing:.28em; color:var(--text-mute); text-transform:uppercase; margin-top:22px;}
+
+.c2tour{position:relative; height:440vh;}
+.c2tour__sticky{position:sticky; top:0; height:100vh; display:flex; align-items:center;}
+.c2tour__grid{display:grid; grid-template-columns:290px 1fr; gap:34px; width:100%; align-items:center;}
+
+.c2-steps{display:flex; flex-direction:column; gap:10px;}
+.c2-step{all:unset; cursor:pointer; display:block; border:1px solid var(--line); border-left:2px solid var(--line); background:var(--bg-elev); padding:15px 16px; transition:border-color .25s var(--ease), background .25s, transform .25s;}
+.c2-step:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.c2-step .c2-sn{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.2em; color:var(--text-mute);}
+.c2-step .c2-st{font-family:var(--font-display); font-size:16px; margin-top:5px; color:var(--text-soft); letter-spacing:-.01em;}
+.c2-step .c2-sd{font-size:12.5px; color:var(--text-mute); margin-top:5px; line-height:1.45; max-height:0; overflow:hidden; opacity:0; transition:max-height .3s, opacity .3s;}
+.c2-step.is-active{border-color:var(--accent-glow); border-left-color:var(--accent); background:linear-gradient(90deg, rgba(255,122,24,.06), transparent); transform:translateX(2px);}
+.c2-step.is-active .c2-st{color:#fff;}
+.c2-step.is-active .c2-sn{color:var(--accent);}
+.c2-step.is-active .c2-sd{max-height:90px; opacity:1;}
+
+.c2-screen{position:relative; width:100%; aspect-ratio:16/10; background:#06070a; border:1px solid var(--line-strong); border-radius:var(--radius-lg); overflow:hidden; box-shadow:0 40px 90px -40px #000, inset 0 0 0 1px rgba(255,255,255,.03);}
+.c2-screen::after{content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg, rgba(255,255,255,0) 0 2px, rgba(0,0,0,.10) 2px 3px); opacity:.5;}
+.c2-chrome{position:absolute; top:0; left:0; right:0; height:34px; display:flex; align-items:center; gap:10px; padding:0 14px; border-bottom:1px solid var(--line); background:linear-gradient(#111418,#0a0c0f); z-index:5; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; color:var(--text-mute); text-transform:uppercase;}
+.c2-lights{display:flex; gap:6px;}
+.c2-lights i{width:8px; height:8px; border-radius:50%; background:#23262c;}
+.c2-lights i:first-child{background:var(--accent);}
+.c2-chrome .c2-now{margin-left:auto; color:var(--ok);}
+.c2-view{position:absolute; inset:34px 0 0 0; opacity:0; transition:opacity .55s var(--ease); }
+.c2-view.is-active{opacity:1;}
+.c2-svgfill{width:100%; height:100%; display:block;}
+
+.c2-hud-tl,.c2-hud-tr,.c2-hud-bl,.c2-hud-br{position:absolute; font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; color:var(--text-mute); text-transform:uppercase; z-index:3; line-height:1.5;}
+.c2-hud-tl{top:12px; left:14px;} .c2-hud-tr{top:12px; right:14px; text-align:right;}
+.c2-hud-bl{bottom:12px; left:14px;} .c2-hud-br{bottom:12px; right:14px; text-align:right;}
+.c2-hud-tl b,.c2-hud-tr b{color:var(--accent); font-weight:500; letter-spacing:.1em;}
+
+/* view 2 track detail */
+.c2-vgrid{position:absolute; inset:0; display:grid; grid-template-columns:1.12fr 1fr;}
+.c2-vcol{padding:26px; display:flex; flex-direction:column; gap:15px; min-width:0;}
+.c2-vcol.right{border-left:1px solid var(--line); background:#070809;}
+.c2-eo{aspect-ratio:16/10; border:1px solid var(--line-strong); border-radius:var(--radius); position:relative; overflow:hidden; background:radial-gradient(120% 120% at 40% 30%, #1a2a33, #080d10);}
+.c2-reticle{position:absolute; width:32%; aspect-ratio:1; border:1px solid var(--accent); left:46%; top:38%; box-shadow:0 0 0 9999px rgba(0,0,0,.42);}
+.c2-reticle::before,.c2-reticle::after{content:""; position:absolute; background:var(--accent); opacity:.6;}
+.c2-reticle::before{left:50%; top:-8px; bottom:-8px; width:1px;}
+.c2-reticle::after{top:50%; left:-8px; right:-8px; height:1px;}
+.c2-eo-tag{position:absolute; left:46%; top:30%; transform:translateY(-100%); font-family:var(--font-mono); font-size:9.5px; color:var(--danger); letter-spacing:.12em; background:rgba(0,0,0,.7); padding:2px 5px; border:1px solid var(--danger);}
+.c2-read{display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px dashed var(--line); padding-bottom:9px;}
+.c2-read .k{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-mute);}
+.c2-read .val{font-family:var(--font-display); font-size:20px; color:#fff; letter-spacing:-.01em;}
+.c2-read .val small{font-size:12px; color:var(--text-soft);}
+.c2-vtitle{font-family:var(--font-mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent);}
+.c2-class{font-family:var(--font-display); font-size:22px; color:#fff; display:flex; align-items:center; gap:10px;}
+.c2-pill-crit{font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; color:var(--danger); border:1px solid var(--danger); padding:3px 7px; text-transform:uppercase;}
+.c2-track{height:5px; background:#14171c; overflow:hidden; margin-top:8px;}
+.c2-track i{display:block; height:100%; background:linear-gradient(90deg, var(--accent), #ffb066);}
+.c2-engage{margin-top:auto; border:1px solid var(--accent-glow); background:rgba(255,122,24,.05); padding:14px 16px;}
+.c2-engage .h{font-family:var(--font-mono); font-size:10px; letter-spacing:.16em; color:var(--accent); text-transform:uppercase;}
+.c2-engage .r{font-size:15px; color:#fff; margin-top:6px;} .c2-engage .r span{color:var(--text-soft); font-size:13px;}
+
+/* view 3 fusion */
+.c2-fusion{position:absolute; inset:0; display:grid; grid-template-columns:1fr 200px;}
+.c2-lanes{padding:22px 26px; display:flex; flex-direction:column; justify-content:center; gap:15px;}
+.c2-lane{display:grid; grid-template-columns:76px 1fr 44px; gap:12px; align-items:center;}
+.c2-lane .ln{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; color:var(--text-soft); text-transform:uppercase;}
+.c2-lane .sig{height:30px; border:1px solid var(--line); background:#080a0d; overflow:hidden;}
+.c2-lane .pct{font-family:var(--font-mono); font-size:11px; color:var(--ok); text-align:right;}
+.c2-fuseout{border-left:1px solid var(--line); background:#070809; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:18px; text-align:center;}
+.c2-fuseout .big{font-family:var(--font-display); font-size:42px; color:var(--accent); line-height:1;}
+.c2-fuseout .cap{font-family:var(--font-mono); font-size:9.5px; letter-spacing:.16em; color:var(--text-mute); text-transform:uppercase; line-height:1.5;}
+.c2-fuseout .trk{font-family:var(--font-mono); font-size:10px; color:var(--ok); letter-spacing:.12em;}
+
+/* view 4 fleet */
+.c2-fleet{position:absolute; inset:0; display:grid; grid-template-columns:1fr 220px;}
+.c2-roster{border-left:1px solid var(--line); background:#070809; padding:18px 16px; display:flex; flex-direction:column; gap:9px;}
+.c2-asset{border:1px solid var(--line); padding:10px 11px; background:var(--bg-elev);}
+.c2-asset .top{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+.c2-asset .id{font-family:var(--font-mono); font-size:11px; color:#fff; letter-spacing:.06em;}
+.c2-stt{font-family:var(--font-mono); font-size:9px; letter-spacing:.12em; padding:2px 6px; border-radius:20px; text-transform:uppercase;}
+.c2-stt.loiter{color:var(--accent-2); border:1px solid var(--accent-2);}
+.c2-stt.intercept{color:var(--danger); border:1px solid var(--danger);}
+.c2-stt.rtb{color:#ffb84d; border:1px solid #ffb84d;}
+.c2-stt.ready{color:var(--ok); border:1px solid var(--ok);}
+.c2-asset .meta{font-family:var(--font-mono); font-size:10px; color:var(--text-mute); margin-top:6px; letter-spacing:.04em;}
+
+@media (max-width: 900px){ .c2halves{grid-template-columns:1fr;} .c2halves > div:first-child{border-right:0; border-bottom:1px solid var(--line);} }
+@media (max-width: 820px){
+  .c2tour{height:auto !important;}
+  .c2tour__sticky{position:static; height:auto;}
+  .c2tour__grid{grid-template-columns:1fr; gap:18px;}
+  .c2-steps{flex-direction:row; overflow-x:auto; gap:8px; padding-bottom:4px;}
+  .c2-step{min-width:190px;} .c2-step .c2-sd{display:none;}
+  .c2-screen{aspect-ratio:4/3;}
+}
+@media (max-width: 560px){
+  .c2-vgrid,.c2-fusion,.c2-fleet{grid-template-columns:1fr;}
+  .c2-vcol.right,.c2-fuseout,.c2-roster{display:none;}
+}
+@media (prefers-reduced-motion: reduce){ .c2-view{transition:none;} }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+
+<nav class="nav">
+  <a class="nav__brand" href="index.html">
+    <img class="trident" src="assets/img/logo.png" alt="Trishul Aero" width="24" height="24" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+    <span>Trishul Aero<small>Advanced Solutions</small></span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="index.html">Platforms</a></li>
+    <li><a href="products.html">Systems</a></li>
+    <li><a href="about.html">Company</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav__cta" href="contact.html">Request Briefing <span>→</span></a>
+</nav>
+
+<!-- ==================== PRODUCT HERO ==================== -->
+<header class="product-hero">
+  <canvas class="canvas-bg" data-density="60" data-mode="orange"></canvas>
+  <div class="grid-bg"></div>
+  <svg class="product-hero__svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;opacity:.5" aria-hidden="true">
+    <defs>
+      <radialGradient id="hazeC2" cx="62%" cy="46%" r="60%">
+        <stop offset="0%" stop-color="#ff7a18" stop-opacity=".2"/>
+        <stop offset="60%" stop-color="#ff7a18" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#hazeC2)"/>
+    <!-- console schematic -->
+    <g transform="translate(720 400)" stroke="#2c3138" fill="none" stroke-width="1.2">
+      <rect x="-260" y="-170" width="520" height="340"/>
+      <rect x="-240" y="-150" width="230" height="200"/>
+      <rect x="10" y="-150" width="230" height="90"/>
+      <rect x="10" y="-40" width="110" height="90"/>
+      <rect x="130" y="-40" width="110" height="90"/>
+      <rect x="-240" y="70" width="480" height="80"/>
+    </g>
+    <g transform="translate(720 400)" stroke="#ff7a18" stroke-width=".7" fill="none" opacity=".8">
+      <path d="M-210 -60 L-150 -100 L-90 -80 L-30 -120"/>
+      <path d="M30 -110 Q80 -140 130 -110 T230 -110"/>
+    </g>
+    <g transform="translate(720 400)" fill="#ff7a18">
+      <circle cx="-210" cy="-60" r="2.5"/><circle cx="-150" cy="-100" r="2.5"/><circle cx="-90" cy="-80" r="2.5"/><circle cx="-30" cy="-120" r="2.5"/>
+    </g>
+    <g transform="translate(720 400)" font-family="JetBrains Mono, monospace" font-size="10" fill="#5e646d" letter-spacing="2.5">
+      <line x1="-240" y1="-150" x2="-360" y2="-230" stroke="#2c3138"/>
+      <text x="-560" y="-234">COMMON OPERATING PICTURE</text>
+      <line x1="240" y1="-105" x2="360" y2="-200" stroke="#2c3138"/>
+      <text x="368" y="-204">SENSOR FUSION · &lt;100 ms</text>
+      <line x1="240" y1="110" x2="360" y2="200" stroke="#2c3138"/>
+      <text x="368" y="204">SWARM TASKING · MESH</text>
+    </g>
+  </svg>
+  <div class="vignette"></div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="classification-bar reveal">
+      <span class="live">LIVE</span>
+      <span>TRISHULC2 // MISSION INTELLIGENCE · SECTOR-9 · LINK NOMINAL 99.4%</span>
+    </div>
+    <div class="eyebrow reveal mt-md"><span class="dot"></span>SYSTEM 02 // MULTI-DOMAIN COMMAND &amp; CONTROL</div>
+    <h1 class="reveal" style="margin-top: 18px;">Every asset.<br>One operating picture.</h1>
+    <p class="lead reveal">TrishulC2 fuses live telemetry, sensor feeds and threat tracks from every airframe in the fleet into a single trusted picture — and turns it into decisions in under a tenth of a second. On-premise. Encrypted. Sovereign.</p>
+    <div class="hero__ctas reveal" style="margin-top: 36px;">
+      <a class="btn btn--primary" href="trishuleye.html">Experience the Console <span class="arrow">→</span></a>
+      <a class="btn" href="#tour">See the Console <span class="arrow">→</span></a>
+      <a class="btn btn--ghost" href="contact.html">Request Demo <span class="arrow">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== SPECS GRID ==================== -->
+<section id="specs">
+  <div class="specs-grid reveal-stagger">
+    <div><div class="v">&lt;100 ms</div><div class="k">Sensor-fusion loop</div></div>
+    <div><div class="v">1000+</div><div class="k">Tracks in view</div></div>
+    <div><div class="v">16+</div><div class="k">Live streams</div></div>
+    <div><div class="v">4</div><div class="k">Sensor domains fused</div></div>
+    <div><div class="v">GNSS-free</div><div class="k">Navigation</div></div>
+    <div><div class="v">AES-256</div><div class="k">Encrypted datalink</div></div>
+    <div><div class="v">99.4%</div><div class="k">Datalink uptime</div></div>
+    <div><div class="v">On-prem</div><div class="k">Deployment</div></div>
+  </div>
+</section>
+
+<!-- ==================== TWO HALVES ==================== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="sect-head reveal">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>01 // The command layer</div>
+        <h2 class="mt-md">One platform. Two halves.</h2>
+      </div>
+      <p class="subhead lead">The fleet flies the mission. TrishulC2 commands it. The airframe and the intelligence layer share one autonomy stack — engineered together, certified together.</p>
+    </div>
+    <div class="c2halves reveal">
+      <div>
+        <div class="c2half-k">The fleet</div>
+        <div class="c2half-t">Airframes that fly the mission</div>
+        <p class="c2half-p">Interceptors, ISR platforms and swarms — every airframe runs the same in-house perception, planning and control stack.</p>
+      </div>
+      <div>
+        <div class="c2half-k">TrishulC2</div>
+        <div class="c2half-t">The intelligence that commands it</div>
+        <p class="c2half-p">One console watching every frame, fusing every sensor, and surfacing exactly what the operator needs to act on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONSOLE TOUR LEAD ==================== -->
+<section class="section-tight c2tour-lead">
+  <div class="container">
+    <div class="eyebrow reveal"><span class="dot"></span>02 // Inside the console</div>
+    <h2 class="mt-md reveal">See what the operator sees.</h2>
+    <p class="subhead reveal" style="margin: 16px auto 0;">Four views, one deployment. Scroll to move through the console — or tap a view to jump straight to it.</p>
+    <div class="c2scrollhint reveal">↓ &nbsp; Scroll &nbsp; ↓</div>
+  </div>
+</section>
+
+<!-- ==================== CONSOLE TOUR ==================== -->
+<section class="c2tour" id="tour">
+  <div class="c2tour__sticky">
+    <div class="container c2tour__grid">
+      <div class="c2-steps" role="tablist" aria-label="Console views">
+        <button class="c2-step is-active" data-i="0" role="tab" aria-selected="true"><span class="c2-sn">01 // COP</span><span class="c2-st">Common Operating Picture</span><span class="c2-sd">Every asset and track across the sector on one live map.</span></button>
+        <button class="c2-step" data-i="1" role="tab" aria-selected="false"><span class="c2-sn">02 // TRACK</span><span class="c2-st">Track &amp; Classification</span><span class="c2-sd">On-board vision classifies the target; C2 recommends the intercept.</span></button>
+        <button class="c2-step" data-i="2" role="tab" aria-selected="false"><span class="c2-sn">03 // FUSION</span><span class="c2-st">Sensor Fusion</span><span class="c2-sd">RF, radar, EO/IR and lidar fused into one track in under 100 ms.</span></button>
+        <button class="c2-step" data-i="3" role="tab" aria-selected="false"><span class="c2-sn">04 // FLEET</span><span class="c2-st">Fleet Autonomy</span><span class="c2-sd">Task the swarm, watch autonomy states, hold the mesh link.</span></button>
+      </div>
+
+      <div class="c2-screen">
+        <div class="c2-chrome"><span class="c2-lights"><i></i><i></i><i></i></span><span>TrishulC2 · Sector 9 · Northern Command</span><span class="c2-now">LINK NOMINAL</span></div>
+
+        <!-- VIEW 1: COP -->
+        <div class="c2-view is-active" data-view="0" role="tabpanel" aria-label="Common Operating Picture">
+          <svg class="c2-svgfill" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <pattern id="cop-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff08" stroke-width="1"/></pattern>
+              <radialGradient id="cop-glow" cx="38%" cy="54%" r="45%"><stop offset="0%" stop-color="#ff7a1833"/><stop offset="100%" stop-color="#ff7a1800"/></radialGradient>
+            </defs>
+            <rect width="800" height="460" fill="#080b0e"/>
+            <rect width="800" height="460" fill="url(#cop-grid)"/>
+            <ellipse cx="300" cy="250" rx="200" ry="130" fill="url(#cop-glow)"/>
+            <path d="M40 350 C 200 300, 320 360, 480 250 S 720 150, 780 120" fill="none" stroke="#ffb84d66" stroke-width="1.5" stroke-dasharray="7 6"/>
+            <text x="52" y="342" fill="#ffb84d99" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1">LINE OF CONTROL</text>
+            <ellipse cx="300" cy="250" rx="150" ry="96" fill="none" stroke="#ff7a1866" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1">
+              <g transform="translate(300,168)"><path d="M0 -9 L8 7 L0 3 L-8 7 Z" fill="#ff7a18"/><text x="12" y="4" fill="#e8eaec">INT-K1 · KALKI-1</text></g>
+              <g transform="translate(228,318)"><path d="M0 -9 L8 7 L0 3 L-8 7 Z" fill="#ff7a18"/><text x="12" y="4" fill="#e8eaec">INT-K1 · KALKI-2</text></g>
+              <g transform="translate(420,300)"><path d="M0 -9 L8 7 L0 3 L-8 7 Z" fill="#34c759"/><text x="12" y="4" fill="#9aa0a8">ISR-07 · LOITER</text></g>
+            </g>
+            <g transform="translate(560,210)">
+              <circle r="7" fill="none" stroke="#ff3b30" stroke-width="1.5"/><circle r="2.5" fill="#ff3b30"/>
+              <path d="M0 0 L46 -26" stroke="#ff3b30" stroke-width="1.5"/>
+              <path d="M40 -30 L52 -22 L44 -16" fill="none" stroke="#ff3b30" stroke-width="1.5"/>
+              <text x="10" y="20" fill="#ff3b30" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1">TGT-04 · HOSTILE</text>
+              <text x="10" y="33" fill="#ff3b3099" font-family="JetBrains Mono, monospace" font-size="9">CLASS-2 UAS · 22.1 m/s</text>
+            </g>
+          </svg>
+          <div class="c2-hud-tl"><b>COMMON OPERATING PICTURE</b><br>34.0837°N · 74.7973°E</div>
+          <div class="c2-hud-tr">SWEEP 04:12:00<br>PATROL ARC ε 18.4 KM</div>
+          <div class="c2-hud-bl">ASSETS 03 · TRACKS 01<br><b>ROE-A</b> · AES-256</div>
+          <div class="c2-hud-br">WIND 12KT 270°<br>ALT REF 1420 M</div>
+        </div>
+
+        <!-- VIEW 2: TRACK DETAIL -->
+        <div class="c2-view" data-view="1" role="tabpanel" aria-label="Track and classification">
+          <div class="c2-vgrid">
+            <div class="c2-vcol">
+              <div class="c2-vtitle">TGT-04 // EO-IR TERMINAL</div>
+              <div class="c2-eo"><div class="c2-eo-tag">CLASS-2 UAS</div><div class="c2-reticle"></div></div>
+              <div class="c2-engage">
+                <div class="h">Recommended engagement</div>
+                <div class="r">INT-K1 KALKI-1 · hard-kill <span>· intercept T-00:41 · Pk 0.93</span></div>
+              </div>
+            </div>
+            <div class="c2-vcol right">
+              <div class="c2-class">CLASS-2 UAS <span class="c2-pill-crit">HOSTILE</span></div>
+              <div>
+                <div class="c2-read" style="border:0; padding:0"><span class="k">Classification confidence</span><span class="val">94.2<small>%</small></span></div>
+                <div class="c2-track"><i style="width:94%"></i></div>
+              </div>
+              <div class="c2-read"><span class="k">Ground speed</span><span class="val">22.1<small> m/s</small></span></div>
+              <div class="c2-read"><span class="k">Altitude AGL</span><span class="val">1421<small> m</small></span></div>
+              <div class="c2-read"><span class="k">Heading</span><span class="val">274<small>°</small></span></div>
+              <div class="c2-read"><span class="k">Range to KALKI-1</span><span class="val">2.4<small> km</small></span></div>
+              <div class="c2-read" style="border:0"><span class="k">Guidance</span><span class="val" style="font-size:15px; color:var(--ok)">VIS-HOMING · GNSS-FREE</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 3: SENSOR FUSION -->
+        <div class="c2-view" data-view="2" role="tabpanel" aria-label="Sensor fusion">
+          <div class="c2-fusion">
+            <div class="c2-lanes">
+              <div class="c2-lane"><span class="ln">RF</span><div class="sig"><svg class="c2-svgfill" viewBox="0 0 300 30" preserveAspectRatio="none"><polyline points="0,15 20,15 26,6 32,24 38,9 44,21 50,15 300,15" fill="none" stroke="#4dd0e1" stroke-width="1.4"/></svg></div><span class="pct">88%</span></div>
+              <div class="c2-lane"><span class="ln">Radar</span><div class="sig"><svg class="c2-svgfill" viewBox="0 0 300 30" preserveAspectRatio="none"><polyline points="0,22 60,22 70,8 80,22 200,22 210,10 220,22 300,22" fill="none" stroke="#34c759" stroke-width="1.4"/></svg></div><span class="pct">91%</span></div>
+              <div class="c2-lane"><span class="ln">EO / IR</span><div class="sig"><svg class="c2-svgfill" viewBox="0 0 300 30" preserveAspectRatio="none"><path d="M0 15 Q75 2 150 15 T300 15" fill="none" stroke="#ff7a18" stroke-width="1.4"/></svg></div><span class="pct">96%</span></div>
+              <div class="c2-lane"><span class="ln">Lidar</span><div class="sig"><svg class="c2-svgfill" viewBox="0 0 300 30" preserveAspectRatio="none"><polyline points="0,18 30,18 34,10 38,18 90,18 94,12 98,18 300,18" fill="none" stroke="#9aa0a8" stroke-width="1.4"/></svg></div><span class="pct">84%</span></div>
+            </div>
+            <div class="c2-fuseout">
+              <div class="big">1</div>
+              <div class="cap">Fused track</div>
+              <div class="trk">◉ TGT-04 LOCKED</div>
+              <div class="cap" style="margin-top:10px; color:var(--accent)">&lt; 100 MS<br>DECISION LOOP</div>
+            </div>
+          </div>
+          <div class="c2-hud-tl"><b>SENSOR FUSION</b><br>4 sources → 1 trusted track</div>
+          <div class="c2-hud-br">CONFIDENCE 94.2%<br>DRIFT 0.0</div>
+        </div>
+
+        <!-- VIEW 4: FLEET -->
+        <div class="c2-view" data-view="3" role="tabpanel" aria-label="Fleet autonomy">
+          <div class="c2-fleet">
+            <svg class="c2-svgfill" viewBox="0 0 560 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><pattern id="fleet-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff08" stroke-width="1"/></pattern></defs>
+              <rect width="560" height="460" fill="#080b0e"/><rect width="560" height="460" fill="url(#fleet-grid)"/>
+              <g stroke="#ff7a1866" stroke-width="1" stroke-dasharray="2 4">
+                <line x1="150" y1="150" x2="330" y2="120"/><line x1="150" y1="150" x2="260" y2="300"/>
+                <line x1="330" y1="120" x2="440" y2="260"/><line x1="260" y1="300" x2="440" y2="260"/>
+              </g>
+              <g font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing=".5">
+                <g transform="translate(150,150)"><path d="M0 -8 L7 6 L0 2 L-7 6 Z" fill="#4dd0e1"/><text x="10" y="3" fill="#9aa0a8">KALKI-1</text></g>
+                <g transform="translate(330,120)"><path d="M0 -8 L7 6 L0 2 L-7 6 Z" fill="#ff3b30"/><text x="10" y="3" fill="#9aa0a8">KALKI-2</text></g>
+                <g transform="translate(260,300)"><path d="M0 -8 L7 6 L0 2 L-7 6 Z" fill="#34c759"/><text x="10" y="3" fill="#9aa0a8">ISR-07</text></g>
+                <g transform="translate(440,260)"><path d="M0 -8 L7 6 L0 2 L-7 6 Z" fill="#ffb84d"/><text x="-58" y="3" fill="#9aa0a8">SWIFT-02</text></g>
+              </g>
+            </svg>
+            <div class="c2-roster">
+              <div class="c2-asset"><div class="top"><span class="id">KALKI-1</span><span class="c2-stt loiter">Loiter</span></div><div class="meta">ALT 1420 · FUEL 82% · MESH ✓</div></div>
+              <div class="c2-asset"><div class="top"><span class="id">KALKI-2</span><span class="c2-stt intercept">Intercept</span></div><div class="meta">TGT-04 · T-00:41 · MESH ✓</div></div>
+              <div class="c2-asset"><div class="top"><span class="id">ISR-07</span><span class="c2-stt loiter">Loiter</span></div><div class="meta">ORBIT · ENDUR 3:52 · MESH ✓</div></div>
+              <div class="c2-asset"><div class="top"><span class="id">SWIFT-02</span><span class="c2-stt rtb">RTB</span></div><div class="meta">BINGO · ETA 6:10 · MESH ✓</div></div>
+              <div class="c2-asset"><div class="top"><span class="id">KALKI-3</span><span class="c2-stt ready">Ready</span></div><div class="meta">PAD-2 · ARMED · MESH ✓</div></div>
+            </div>
+          </div>
+          <div class="c2-hud-tl"><b>FLEET AUTONOMY</b><br>Swarm mesh · 5 assets</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CAPABILITIES ==================== -->
+<section class="section bg-elev">
+  <div class="container">
+    <div class="sect-head reveal">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>03 // Everything inside</div>
+        <h2 class="mt-md">Everything the console runs on.</h2>
+      </div>
+      <p class="subhead lead">From a handful of assets to a sector-wide fleet — the full command layer, map to decision, in one on-premise deployment.</p>
+    </div>
+
+    <div class="tech reveal-stagger">
+      <div class="tech__cell">
+        <div class="num">CAP 01</div>
+        <h4>Common operating picture</h4>
+        <p>Every airframe, sensor and track in one live view — map, sector and fleet at a glance, low-latency.</p>
+      </div>
+      <div class="tech__cell">
+        <div class="num">CAP 02</div>
+        <h4>Sensor fusion</h4>
+        <p>RF, radar, EO/IR and lidar reduced to one trusted track on a sub-100 ms decision loop.</p>
+      </div>
+      <div class="tech__cell">
+        <div class="num">CAP 03</div>
+        <h4>On-board classification</h4>
+        <p>Targets identified on the vehicle — no cloud, no GNSS dependency, no external command link.</p>
+      </div>
+      <div class="tech__cell">
+        <div class="num">CAP 04</div>
+        <h4>Threat &amp; engagement</h4>
+        <p>C2 ranks threats and recommends the interceptor, intercept time and kill probability — ROE-aware.</p>
+      </div>
+      <div class="tech__cell">
+        <div class="num">CAP 05</div>
+        <h4>Swarm tasking</h4>
+        <p>Task and re-task the fleet in flight; autonomy states and mesh link held throughout.</p>
+      </div>
+      <div class="tech__cell">
+        <div class="num">CAP 06</div>
+        <h4>Sovereign &amp; on-prem</h4>
+        <p>Runs inside your perimeter on indigenous silicon. AES-256, no dependency you don't control.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="section section-tight">
+  <div class="container">
+    <div class="reveal" style="border: 1px solid var(--line-strong); padding: clamp(40px, 6vw, 80px); position: relative; overflow: hidden;">
+      <div class="grid-bg"></div>
+      <div class="hud-brackets"><i></i></div>
+      <div style="position: relative; display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: center;">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>EVALUATE TRISHULC2</div>
+          <h2 class="mt-md" style="font-size: clamp(34px, 4.4vw, 56px);">See TrishulC2 running on live sensor data.</h2>
+          <p class="subhead mt-md">A capability briefing at our Manipal facility — every enquiry routes to a real engineer, not a form queue. Bring your sensors; we'll fuse them.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+          <a class="btn btn--primary" href="contact.html">Request Briefing <span class="arrow">→</span></a>
+          <a class="btn" href="trishuleye.html">Experience the Console <span class="arrow">→</span></a>
+          <a class="btn btn--ghost" href="products.html">All systems <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__top">
+    <div class="footer__brand">
+      <img src="assets/img/logo.png" alt="Trishul Aero" width="48" height="48" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+      <h4>Trishul Aero</h4>
+      <p>Designing and manufacturing autonomous aerial systems for India and partner nations.</p>
+    </div>
+    <div class="footer__col"><h5>Systems</h5><ul><li><a href="product-kalki.html">Kalki Interceptor</a></li><li><a href="product-trishulc2.html">TrishulC2</a></li></ul></div>
+    <div class="footer__col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Press</a></li></ul></div>
+    <div class="footer__col"><h5>Compliance</h5><ul><li><a href="#">DGCA</a></li><li><a href="#">MoD AON</a></li><li><a href="#">Privacy</a></li></ul></div>
+    <div class="footer__col footer__newsletter">
+      <h5>Field Notes</h5>
+      <form data-demo><input type="email" placeholder="you@operator.in" required /><button type="submit">Subscribe →</button></form>
+    </div>
+  </div>
+  <div class="footer__bar"><span>© 2026 Trishul Advanced Solutions Pvt. Ltd.</span><span>HQ Manipal · R&amp;D Bengaluru · IN</span></div>
+</footer>
+
+<script src="assets/js/trishul.js"></script>
+<script>
+(function(){
+  var tour = document.getElementById('tour');
+  if(!tour) return;
+  var views = Array.prototype.slice.call(tour.querySelectorAll('.c2-view'));
+  var steps = Array.prototype.slice.call(tour.querySelectorAll('.c2-step'));
+  var N = views.length, current = -1;
+  function setActive(i){
+    if(i===current) return; current=i;
+    views.forEach(function(v,k){ v.classList.toggle('is-active', k===i); });
+    steps.forEach(function(s,k){ s.classList.toggle('is-active', k===i); s.setAttribute('aria-selected', k===i?'true':'false'); });
+  }
+  setActive(0);
+  function desktop(){ return window.matchMedia('(min-width:821px)').matches; }
+  var ticking=false;
+  function onScroll(){
+    if(!desktop()) return;
+    var rect = tour.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = tour.offsetHeight - vh;
+    var scrolled = Math.min(Math.max(-rect.top, 0), total);
+    var p = total>0 ? scrolled/total : 0;
+    var idx = Math.floor(p * N * 0.999);
+    if(idx>=N) idx=N-1; if(idx<0) idx=0;
+    setActive(idx);
+    ticking=false;
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } }, {passive:true});
+  window.addEventListener('resize', onScroll);
+  steps.forEach(function(s,k){
+    s.addEventListener('click', function(){
+      if(desktop()){
+        var vh = window.innerHeight; var total = tour.offsetHeight - vh;
+        var y = tour.offsetTop + ((k+0.5)/N)*total;
+        var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top:y, behavior: rm?'auto':'smooth'});
+      } else { setActive(k); }
+    });
+  });
+  onScroll();
+})();
+</script>
+</body>
+</html>
