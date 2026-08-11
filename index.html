@@ -14,6 +14,33 @@
 </head>
 <body>
 
+<!-- ==================== BOOT / INTRO LOADER ==================== -->
+<div class="boot" id="boot" role="status" aria-label="Loading Trishul Aero">
+  <div class="boot__scan"></div>
+  <div class="boot__core">
+    <div class="boot__reticle">
+      <svg class="boot__grid" viewBox="0 0 400 400" fill="none" stroke-width="1" aria-hidden="true">
+        <rect class="frame" x="228" y="228" width="150" height="150"/>
+        <line class="ray" x1="200" y1="200" x2="30"  y2="30"/>
+        <line class="ray" x1="200" y1="200" x2="370" y2="30"/>
+        <line class="ray" x1="200" y1="200" x2="30"  y2="370"/>
+        <line class="ray" x1="200" y1="200" x2="370" y2="370"/>
+      </svg>
+      <svg class="boot__ring" viewBox="0 0 400 400" aria-hidden="true">
+        <circle cx="200" cy="200" r="168"/>
+        <circle cx="200" cy="200" r="150"/>
+      </svg>
+      <span class="boot__dot"></span>
+      <img class="boot__logo" src="assets/img/logo.png" alt="" width="320" height="320"
+           onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+    </div>
+    <div class="boot__word" data-word="TRISHUL AERO"></div>
+    <div class="boot__bar"><i></i></div>
+    <div class="boot__status"><b>&gt;</b> INITIALIZING</div>
+  </div>
+  <button class="boot__skip" type="button">Skip →</button>
+</div>
+
 <div class="cursor-glow"></div>
 
 <!-- ==================== NAV ==================== -->
@@ -51,14 +78,25 @@
         <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse">
           <circle cx="1" cy="1" r=".7" fill="#2c3138"/>
         </pattern>
+        <radialGradient id="bloom" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#ff7a18" stop-opacity=".55"/>
+          <stop offset="45%" stop-color="#ff7a18" stop-opacity=".14"/>
+          <stop offset="100%" stop-color="#ff7a18" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="rotorGlow" x="-120%" y="-120%" width="340%" height="340%">
+          <feGaussianBlur stdDeviation="3.4" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
       <rect width="1600" height="900" fill="url(#haze)"/>
+      <!-- soft glow bloom behind the aircraft -->
+      <ellipse class="drone-bloom" cx="960" cy="330" rx="380" ry="250" fill="url(#bloom)"/>
       <!-- horizon -->
       <line x1="0" y1="640" x2="1600" y2="640" stroke="#2a2e35" stroke-width="1"/>
       <line x1="0" y1="641" x2="1600" y2="641" stroke="#ff7a18" stroke-width=".5" stroke-dasharray="2 6"/>
 
-      <!-- Distant drone silhouette schematic, central -->
-      <g transform="translate(800 380)">
+      <!-- Distant drone silhouette schematic, offset right so it frames the hero card -->
+      <g transform="translate(960 330)">
         <!-- center fuselage -->
         <ellipse cx="0" cy="0" rx="36" ry="10" fill="url(#metal)" stroke="#3a3f47" stroke-width="1"/>
         <!-- left arm -->
@@ -67,14 +105,28 @@
         <!-- right arm -->
         <line x1="30" y1="-4" x2="180" y2="-110" stroke="#3a3f47" stroke-width="3"/>
         <line x1="30" y1="4" x2="180" y2="110" stroke="#3a3f47" stroke-width="3"/>
-        <!-- rotors -->
-        <g stroke="#ff7a18" stroke-width="1" fill="none">
+        <!-- rotors: faint housing ring + glowing spinning prop disc -->
+        <g stroke="#3a3f47" stroke-width="1" fill="none">
           <circle cx="-180" cy="-110" r="44"/>
           <circle cx="180" cy="-110" r="44"/>
           <circle cx="-180" cy="110" r="44"/>
           <circle cx="180" cy="110" r="44"/>
         </g>
-        <g fill="#1c2026" stroke="#2c3138">
+        <g fill="none" stroke="#ffb877" stroke-width="2" stroke-linecap="round" filter="url(#rotorGlow)">
+          <g transform="translate(-180 -110)"><g class="rotor">
+            <path d="M40 0 A40 40 0 0 1 27.8 28.8"/><path d="M-20 34.6 A40 40 0 0 1 -38.8 9.7"/><path d="M-20 -34.6 A40 40 0 0 1 11 -38.5"/>
+          </g></g>
+          <g transform="translate(180 -110)"><g class="rotor rotor--rev">
+            <path d="M40 0 A40 40 0 0 1 27.8 28.8"/><path d="M-20 34.6 A40 40 0 0 1 -38.8 9.7"/><path d="M-20 -34.6 A40 40 0 0 1 11 -38.5"/>
+          </g></g>
+          <g transform="translate(-180 110)"><g class="rotor rotor--slow rotor--rev">
+            <path d="M40 0 A40 40 0 0 1 27.8 28.8"/><path d="M-20 34.6 A40 40 0 0 1 -38.8 9.7"/><path d="M-20 -34.6 A40 40 0 0 1 11 -38.5"/>
+          </g></g>
+          <g transform="translate(180 110)"><g class="rotor rotor--slow">
+            <path d="M40 0 A40 40 0 0 1 27.8 28.8"/><path d="M-20 34.6 A40 40 0 0 1 -38.8 9.7"/><path d="M-20 -34.6 A40 40 0 0 1 11 -38.5"/>
+          </g></g>
+        </g>
+        <g fill="#0a0c0f" stroke="#ff7a18" stroke-width="1">
           <circle cx="-180" cy="-110" r="6"/>
           <circle cx="180" cy="-110" r="6"/>
           <circle cx="-180" cy="110" r="6"/>
@@ -106,22 +158,24 @@
     <div class="scanline"></div>
   </div>
 
-  <div class="hero__inner reveal-stagger">
-    <div class="classification-bar">
-      <span class="live">LIVE</span>
-      <span>Classification // Open · Operating from Manipal &amp; Bengaluru</span>
-    </div>
+  <div class="hero__inner">
+    <div class="hero__card reveal-stagger">
+      <div class="classification-bar">
+        <span class="live">LIVE</span>
+        <span>Classification // Open · Operating from Manipal &amp; Bengaluru</span>
+      </div>
 
-    <h1 class="h-display hero__title">Built to<br><em>own the sky.</em></h1>
+      <h1 class="h-display hero__title">Built to<br><em>own the sky.</em></h1>
 
-    <p class="hero__sub">
-      Trishul Aero engineers autonomous aerial platforms, counter-UAS systems, and mission intelligence for India's armed forces, paramilitary, and commercial operators. Hardware. Autonomy. Intelligence. Vertically integrated.
-    </p>
+      <p class="hero__sub">
+        Trishul Aero engineers autonomous aerial platforms, counter-UAS systems, and mission intelligence for India's armed forces, paramilitary, and commercial operators. Hardware. Autonomy. Intelligence. Vertically integrated.
+      </p>
 
-    <div class="hero__ctas">
-      <a class="btn btn--primary" href="products.html">Explore Systems <span class="arrow">→</span></a>
-      <a class="btn" href="contact.html">Request Demo <span class="arrow">→</span></a>
-      <a class="btn btn--ghost" href="about.html">Why Trishul <span class="arrow">→</span></a>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="products.html">Explore Systems <span class="arrow">→</span></a>
+        <a class="btn" href="contact.html">Request Demo <span class="arrow">→</span></a>
+        <a class="btn btn--ghost" href="about.html">Why Trishul <span class="arrow">→</span></a>
+      </div>
     </div>
   </div>
 

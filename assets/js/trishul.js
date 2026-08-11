@@ -271,4 +271,74 @@
     });
   });
 
+  /* ---------- 12. BOOT / INTRO LOADER ------------------- */
+  (function boot() {
+    const el = document.getElementById('boot');
+    if (!el) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Play once per browser session; skip on repeat navigations.
+    if (sessionStorage.getItem('trishul_booted') === '1') { el.remove(); return; }
+
+    const bar    = el.querySelector('.boot__bar i');
+    const status = el.querySelector('.boot__status');
+    const word   = el.querySelector('.boot__word');
+    const skip   = el.querySelector('.boot__skip');
+
+    document.body.classList.add('is-booting');
+
+    const stages = [
+      'INITIALIZING', 'CALIBRATING SENSORS', 'ESTABLISHING DATALINK',
+      'LOADING AUTONOMY STACK', 'RENDERING'
+    ];
+
+    // Type the wordmark
+    const full = (word && word.dataset.word) || 'TRISHUL AERO';
+    let ci = 0;
+    const typer = setInterval(() => {
+      if (!word) return;
+      word.textContent = full.slice(0, ++ci);
+      if (ci >= full.length) { clearInterval(typer); el.classList.add('is-typed'); }
+    }, 65);
+
+    let p = 0, stage = -1, done = false;
+
+    const setStage = (i) => {
+      if (i === stage || !status) return;
+      stage = i;
+      status.innerHTML = '<b>&gt;</b> ' + stages[i];
+    };
+
+    const finish = () => {
+      if (done) return; done = true;
+      clearInterval(iv); clearInterval(typer);
+      if (word) word.textContent = full;
+      sessionStorage.setItem('trishul_booted', '1');
+      el.classList.add('is-done');
+      document.body.classList.remove('is-booting');
+      setTimeout(() => el.remove(), 950);
+    };
+
+    if (reduce) { setStage(stages.length - 1); if (bar) bar.style.width = '100%'; setTimeout(finish, 400); }
+
+    const iv = setInterval(() => {
+      p += Math.random() * 6 + 3;
+      if (p >= 100) {
+        p = 100;
+        if (bar) bar.style.width = '100%';
+        setStage(stages.length - 1);
+        clearInterval(iv);
+        setTimeout(finish, 620);
+        return;
+      }
+      if (bar) bar.style.width = p + '%';
+      setStage(Math.min(stages.length - 1, Math.floor(p / (100 / stages.length))));
+    }, 175);
+
+    if (skip) skip.addEventListener('click', finish);
+    // Failsafe so the site is never stuck behind the loader.
+    setTimeout(finish, 7000);
+  })();
+
 })();
