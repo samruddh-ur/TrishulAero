@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Operator console / app views — not marketing pages, keep out of the index
+Disallow: /dashboard.html
+Disallow: /livestream.html
+Disallow: /trishuleye/
+
+Sitemap: https://trishulaero.com/sitemap.xml
