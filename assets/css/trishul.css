@@ -1315,24 +1315,27 @@ body.is-booting { overflow: hidden; }
    25. HERO — KALKI RENDER SHOWCASE (with animated reticle)
    ========================================================= */
 .hero__kalki {
-  position: absolute; z-index: 0; pointer-events: none;
-  right: -3%; top: 46%; transform: translateY(-50%);
-  width: min(66vw, 960px);
+  /* sits above the vignette / scanline / gradient overlays so the
+     render stays crisp, but below the glass card + HUD (z-index 2) */
+  position: absolute; z-index: 1; pointer-events: none;
+  right: -1%; top: 46%; transform: translateY(-50%);
+  width: min(66vw, 980px);
   aspect-ratio: 1586 / 992;
 }
 .hero__kalki-img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: contain;
+  filter: brightness(1.16) contrast(1.06);
   /* fade the render's rectangular edges into the hero background */
-  -webkit-mask-image: radial-gradient(ellipse 78% 76% at 50% 50%, #000 58%, transparent 90%);
-  mask-image: radial-gradient(ellipse 78% 76% at 50% 50%, #000 58%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, #000 62%, transparent 92%);
+  mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, #000 62%, transparent 92%);
   animation: kalki-float 7s var(--ease) infinite;
   will-change: transform;
 }
 .hero__kalki-glow {
-  position: absolute; left: 50%; top: 52%; width: 84%; height: 72%;
+  position: absolute; left: 50%; top: 52%; width: 88%; height: 78%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(255,122,24,.20), rgba(255,122,24,0) 62%);
+  background: radial-gradient(ellipse at center, rgba(255,122,24,.30), rgba(255,122,24,0) 64%);
   animation: kalki-bloom 5.5s var(--ease) infinite;
 }
 .hero__kalki-rings {
