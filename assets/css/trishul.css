@@ -1321,8 +1321,8 @@ body.is-booting { overflow: hidden; }
   /* sits above the vignette / scanline / gradient overlays so the
      render stays crisp, but below the glass card + HUD (z-index 2) */
   position: absolute; z-index: 1; pointer-events: none;
-  right: -1%; top: 46%; transform: translateY(-50%);
-  width: min(66vw, 980px);
+  right: 2%; top: 46%; transform: translateY(-50%);
+  width: min(64vw, 960px);
   aspect-ratio: 1586 / 992;
   animation: kalki-in 1.4s var(--ease-out) both;
 }
