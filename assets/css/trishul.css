@@ -1405,7 +1405,9 @@ body.is-booting { overflow: hidden; }
 @keyframes feat-pulse    { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
 @keyframes feat-radar    { to { transform: rotate(360deg); } }
 @keyframes feat-threat   { 0%,49% { opacity: 1; } 50%,100% { opacity: .25; } }
+.feat-dash-c2 { animation: feat-march-c2 4s linear infinite; }
+@keyframes feat-march-c2 { to { stroke-dashoffset: -104; } }
 @media (prefers-reduced-motion: reduce) {
-  .feat-dash, .feat-scan, .feat-lock, .feat-pulse > *, .feat-radar, .feat-threat { animation: none !important; }
+  .feat-dash, .feat-dash-c2, .feat-scan, .feat-lock, .feat-pulse > *, .feat-radar, .feat-threat { animation: none !important; }
   .feat-mover, .feat-scan { display: none; }
 }
