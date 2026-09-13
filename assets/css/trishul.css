@@ -1386,3 +1386,26 @@ body.is-booting { overflow: hidden; }
   .hero__kalki-scan::before, .hero__title em { animation: none !important; }
   .hero__kalki { opacity: 1; }
 }
+
+/* =========================================================
+   26. OPERATIONAL-DOMAIN SCHEMATIC ANIMATIONS
+   ========================================================= */
+.feat-dash  { animation: feat-march 3s linear infinite; }
+.feat-scan  { transform-box: fill-box; animation: feat-scanline 6s var(--ease) infinite; }
+.feat-lock  { animation: feat-lock 2.4s var(--ease) infinite; }
+.feat-mover { filter: drop-shadow(0 0 5px var(--accent)); }
+.feat-pulse > * { animation: feat-pulse 2s var(--ease) infinite; }
+.feat-pulse > *:nth-child(2) { animation-delay: .5s; }
+.feat-pulse > *:nth-child(3) { animation-delay: 1s; }
+.feat-radar { transform-box: view-box; transform-origin: 300px 260px; animation: feat-radar 5s linear infinite; }
+.feat-threat { animation: feat-threat 1.6s steps(1, end) infinite; }
+@keyframes feat-march    { to { stroke-dashoffset: -42; } }
+@keyframes feat-scanline { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: .5; } 88% { opacity: .5; } 100% { transform: translateY(520px); opacity: 0; } }
+@keyframes feat-lock     { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+@keyframes feat-pulse    { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
+@keyframes feat-radar    { to { transform: rotate(360deg); } }
+@keyframes feat-threat   { 0%,49% { opacity: 1; } 50%,100% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) {
+  .feat-dash, .feat-scan, .feat-lock, .feat-pulse > *, .feat-radar, .feat-threat { animation: none !important; }
+  .feat-mover, .feat-scan { display: none; }
+}
