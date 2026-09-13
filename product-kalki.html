@@ -161,8 +161,9 @@
         </g>
         <!-- FOV cone -->
         <path d="M400 80 L520 360 L280 360 Z" fill="#ff7a18" opacity=".08" stroke="#ff7a18" stroke-width=".5"/>
+        <line class="feat-scan" x1="0" y1="0" x2="600" y2="0" stroke="#ff7a18" stroke-width=".6" opacity=".3"/>
         <!-- target lock -->
-        <g transform="translate(400 260)">
+        <g class="feat-lock" transform="translate(400 260)">
           <rect x="-30" y="-30" width="60" height="60" fill="none" stroke="#ff7a18" stroke-width="1"/>
           <line x1="-30" y1="0" x2="-22" y2="0" stroke="#ff7a18"/>
           <line x1="30" y1="0" x2="22" y2="0" stroke="#ff7a18"/>
@@ -197,8 +198,9 @@
         <rect width="600" height="520" fill="#0a0c0f"/>
         <!-- Lost-link recovery: waypoints -->
         <g stroke="#3a3f47" stroke-dasharray="2 6"><line x1="0" y1="260" x2="600" y2="260"/><line x1="300" y1="0" x2="300" y2="520"/></g>
-        <path d="M120 400 Q200 200 320 220 Q420 240 480 120" fill="none" stroke="#ff7a18" stroke-width="1" stroke-dasharray="4 6"/>
-        <g fill="#ff7a18">
+        <path class="feat-dash" d="M120 400 Q200 200 320 220 Q420 240 480 120" fill="none" stroke="#ff7a18" stroke-width="1" stroke-dasharray="4 6"/>
+        <circle class="feat-mover" r="4.5" fill="#ff7a18"><animateMotion dur="6.5s" repeatCount="indefinite" path="M120 400 Q200 200 320 220 Q420 240 480 120"/></circle>
+        <g class="feat-pulse" fill="#ff7a18">
           <circle cx="120" cy="400" r="5"/><circle cx="320" cy="220" r="5"/>
           <circle cx="480" cy="120" r="5"/>
         </g>

@@ -718,8 +718,8 @@
           <rect x="380" y="320" width="140" height="100"/>
         </g>
         <g stroke="#ff7a18" stroke-width=".5" opacity=".5" fill="none">
-          <line x1="80" y1="240" x2="520" y2="240" stroke-dasharray="2 4"/>
-          <line x1="80" y1="380" x2="520" y2="380" stroke-dasharray="2 4"/>
+          <line class="feat-dash" x1="80" y1="240" x2="520" y2="240" stroke-dasharray="2 4"/>
+          <line class="feat-dash" x1="80" y1="380" x2="520" y2="380" stroke-dasharray="2 4"/>
         </g>
         <!-- station labels -->
         <g font-family="JetBrains Mono" font-size="9" fill="#9aa0a8" letter-spacing="2">
@@ -729,10 +729,11 @@
           <text x="90" y="350">INTEGRATION + FLIGHT TEST</text>
           <text x="390" y="350">PROPULSION</text>
         </g>
-        <g fill="#ff7a18">
+        <g class="feat-pulse" fill="#ff7a18">
           <circle cx="170" cy="240" r="3"/><circle cx="340" cy="240" r="3"/><circle cx="470" cy="240" r="3"/>
           <circle cx="220" cy="380" r="3"/><circle cx="450" cy="380" r="3"/>
         </g>
+        <line class="feat-scan" x1="0" y1="0" x2="600" y2="0" stroke="#ff7a18" stroke-width=".6" opacity=".3"/>
         <g font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">
           <text x="40" y="40">MANIPAL // ASSEMBLY FLOOR</text>
           <text x="40" y="60">CNC · AVIONICS · PROPULSION · INTEGRATION</text>

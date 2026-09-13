@@ -110,7 +110,7 @@
         <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
           <rect width="600" height="520" fill="#0a0c0f"/>
           <!-- jammer at centre, expanding field -->
-          <g fill="none" stroke="#ff7a18">
+          <g class="feat-pulse" fill="none" stroke="#ff7a18">
             <circle cx="300" cy="300" r="60" opacity=".9"/>
             <circle cx="300" cy="300" r="120" opacity=".5"/>
             <circle cx="300" cy="300" r="180" opacity=".28"/>
@@ -118,11 +118,11 @@
           <circle cx="300" cy="300" r="10" fill="#ff7a18"/>
           <!-- hostile drone + controller close together -->
           <g transform="translate(180 140)">
-            <circle cx="0" cy="0" r="5" fill="#ff3b30"/>
+            <circle class="feat-threat" cx="0" cy="0" r="5" fill="#ff3b30"/>
             <circle cx="26" cy="10" r="4" fill="#ff7a18"/>
             <text x="-30" y="-14" font-family="JetBrains Mono" font-size="9" fill="#ff3b30" letter-spacing="2">DRONE + RC</text>
           </g>
-          <line x1="300" y1="300" x2="180" y2="140" stroke="#ff7a18" stroke-width="1" stroke-dasharray="3 4"/>
+          <line class="feat-dash" x1="300" y1="300" x2="180" y2="140" stroke="#ff7a18" stroke-width="1" stroke-dasharray="3 4"/>
           <g font-family="JetBrains Mono" font-size="9" fill="#5e646d" letter-spacing="2">
             <text x="40" y="40">JAMMER-TO-SIGNAL RATIO // &gt; 20:1</text>
             <text x="40" y="60">DEFEATS DRONE BESIDE ITS CONTROLLER</text>
@@ -150,10 +150,11 @@
           <rect width="600" height="520" fill="#0a0c0f"/>
           <g stroke="#2a2e35" stroke-dasharray="2 6"><line x1="60" y1="260" x2="540" y2="260"/></g>
           <!-- detect -> confirm -> engage flow -->
-          <g fill="#ff7a18">
+          <g class="feat-pulse" fill="#ff7a18">
             <circle cx="120" cy="260" r="6"/><circle cx="300" cy="260" r="6"/><circle cx="480" cy="260" r="6"/>
           </g>
           <line x1="120" y1="260" x2="480" y2="260" stroke="#ff7a18" stroke-width="1"/>
+          <circle class="feat-mover" r="5" fill="#ff7a18"><animateMotion dur="4s" repeatCount="indefinite" path="M120 260 L480 260"/></circle>
           <g font-family="JetBrains Mono" font-size="10" fill="#e8eaec" letter-spacing="2" text-anchor="middle">
             <text x="120" y="300">DETECT</text>
             <text x="300" y="300">CONFIRM · IFF</text>
