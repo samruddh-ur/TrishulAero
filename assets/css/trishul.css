@@ -364,9 +364,10 @@ section { position: relative; }
 }
 .hero__title {
   margin: 20px 0;
-  /* sized so "own the sky." stays a clean 2 lines inside the glass card
-     while leaving the drone visible alongside it */
-  font-size: clamp(40px, 5.6vw, 86px);
+  /* sentence-length positioning headline — sized to stay a few tidy lines
+     inside the glass card while the Kalki render shows alongside it */
+  font-size: clamp(30px, 4vw, 60px);
+  line-height: 1.02;
 }
 .hero__sub {
   font-size: clamp(16px, 1.3vw, 20px);
